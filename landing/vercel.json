@@ -29,18 +29,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "nokhba-landing-batch8.vercel.app"
-        }
-      ],
-      "destination": "https://course.powerpoint-ksa.store/:path*",
-      "permanent": true
-    }
   ]
 }
