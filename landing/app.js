@@ -14,7 +14,7 @@ const CONFIG = {
 
   batchNumber: 8,
   batch: "الدفعة 8",
-  seats: 100,
+  seats: 400,
 
   // Real registration deadline (Riyadh time). The countdown counts down to this
   // exact moment and switches to "closed" after it — it never resets.
@@ -22,7 +22,7 @@ const CONFIG = {
   deadlineISO: "2026-10-25T23:59:59+03:00",
   closedLabel: "انتهى التسجيل في الدفعة 8",
 
-  trainees: 5382,
+  trainees: 5000,
   rating: 4.95,
   designs: 829,
   years: 4,

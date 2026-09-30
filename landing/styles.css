@@ -134,12 +134,29 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 
 /* ---------- typography ---------- */
 .hero-title, .h2, h3, .brand-name { color: var(--text-primary); font-weight: 700; letter-spacing: 0; }
-.hero-title { font-size: clamp(32px, 8.6vw, 64px); line-height: 1.4; margin-block: 16px 12px; text-wrap: balance; }
+.hero-title { font-size: clamp(32px, 8.6vw, 60px); line-height: 1.4; margin-block: 16px 12px; text-wrap: balance; }
+.hero .container { max-width: calc(1000px + var(--gutter) * 2); }
 .h2 { font-size: clamp(26px, 7vw, 44px); line-height: 1.45; margin-bottom: 12px; text-wrap: balance; }
 .h2-xl { font-size: clamp(30px, 8vw, 54px); }
 .lead { font-size: 16.5px; line-height: 1.9; max-width: 640px; margin-inline: auto; text-wrap: pretty; }
 .body-text { font-size: 16.5px; line-height: 1.95; max-width: 680px; margin: 22px auto 0; text-wrap: pretty; }
 .grad-text { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* two-line copy: line 1 on top, line 2 underneath in a contrasting colour */
+.line { display: block; }
+.line-accent { width: fit-content; margin-inline: auto; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.line-strong { color: var(--green-deep); font-weight: 700; }
+.lead .line + .line, .body-text .line + .line { margin-top: 2px; }
+.punchline .line-accent, .closing-card .line-accent { margin-inline: 0; }
+.closing-card .line-accent { margin-inline: auto; }
+/* "5 مراحل" — highlighted chip inside the headline */
+.num-badge {
+  display: inline-flex; align-items: baseline; gap: 8px; padding: 0 18px 4px; margin-inline-start: 4px; border-radius: 18px;
+  color: #fff; -webkit-text-fill-color: #fff; background: var(--grad-brand-strong);
+  box-shadow: 0 14px 30px -12px rgba(17, 73, 60, 0.55), 0 8px 20px -10px rgba(196, 107, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: rotate(-2deg); vertical-align: middle;
+}
+.num-badge b { font-size: 1.35em; line-height: 1.1; }
 
 .section-label {
   display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 5px 14px; border-radius: 999px;
@@ -269,17 +286,15 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 
 /* ---------- system ---------- */
 ol.stages { position: relative; display: grid; gap: 14px; margin-top: 34px; padding-inline-start: 44px; }
-.stages-track { /* glass track with gradient border */
-  position: absolute; top: 18px; bottom: 18px; inset-inline-start: 11px; width: 12px; border-radius: 999px;
-  border: 1.5px solid transparent;
-  background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.45)) padding-box, linear-gradient(180deg, #4a927f, #f68616) border-box;
-  box-shadow: inset 0 1px 3px rgba(17, 73, 60, 0.12), 0 6px 16px -8px rgba(17, 73, 60, 0.3);
+.stages-track { /* hairline path: faint gradient line, filled on scroll */
+  position: absolute; top: 30px; bottom: 30px; inset-inline-start: 18px; width: 2px; border-radius: 2px;
+  background: linear-gradient(180deg, rgba(74, 146, 127, 0.28), rgba(246, 134, 22, 0.28));
 }
-.stages-fill { position: absolute; inset: 2px; border-radius: inherit; background: linear-gradient(180deg, #4a927f, #11493c 55%, #f68616); transform-origin: top; transform: scaleY(var(--draw, 0)); }
+.stages-fill { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, #4a927f, #11493c 55%, #f68616); transform-origin: top; transform: scaleY(var(--draw, 0)); }
 .stage { position: relative; padding: 18px 18px 16px; text-align: start; transition: transform var(--t-fast) var(--ease); }
-.stage::before { /* node on the track */
-  content: ""; position: absolute; top: 24px; inset-inline-start: -40px; width: 16px; height: 16px; border-radius: 50%;
-  background: #fff; border: 3px solid transparent; background-clip: padding-box; box-shadow: 0 0 0 3px rgba(74, 146, 127, 0.9), 0 4px 10px rgba(17, 73, 60, 0.3);
+.stage::before { /* node centred on the line */
+  content: ""; position: absolute; top: 24px; inset-inline-start: -32px; width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; box-shadow: inset 0 0 0 2px #4a927f, 0 0 0 4px rgba(255, 255, 255, 0.9), 0 3px 8px rgba(17, 73, 60, 0.25);
 }
 .stage-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .stage-num { font-size: 30px; font-weight: 700; line-height: 1; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -292,7 +307,7 @@ ol.stages { position: relative; display: grid; gap: 14px; margin-top: 34px; padd
 .stage-featured .trophy-orb svg { width: 28px; height: 28px; }
 .stage-featured .stage-badge { border-radius: 10px; line-height: 1.5; padding: 4px 10px; }
 .stage-body { min-width: 0; }
-.stage-featured::before { box-shadow: 0 0 0 3px #f68616, 0 0 18px rgba(246, 134, 22, 0.7); }
+.stage-featured::before { box-shadow: inset 0 0 0 2px #f68616, 0 0 0 4px rgba(255, 255, 255, 0.9), 0 0 14px rgba(246, 134, 22, 0.6); }
 .stage-trophy { position: relative; display: grid; place-items: center; }
 .trophy-orb {
   position: relative; z-index: 1; display: grid; place-items: center; width: 70px; height: 70px; border-radius: 22px; color: #fff;
@@ -564,9 +579,9 @@ ol.stages { position: relative; display: grid; gap: 14px; margin-top: 34px; padd
   .intro-video .container { max-width: calc(980px + var(--gutter) * 2); }
 
   ol.stages { grid-template-columns: repeat(4, 1fr); gap: 16px; padding-inline-start: 0; padding-top: 44px; margin-top: 52px; }
-  .stages-track { top: 0; bottom: auto; inset-inline: 0; width: auto; height: 12px; background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.45)) padding-box, linear-gradient(to left, #4a927f, #f68616) border-box; }
+  .stages-track { top: 7px; bottom: auto; inset-inline: 0; width: auto; height: 2px; background: linear-gradient(to left, rgba(74, 146, 127, 0.28), rgba(246, 134, 22, 0.28)); }
   .stages-fill { transform-origin: right; transform: scaleX(var(--draw, 0)); background: linear-gradient(to left, #4a927f, #11493c 55%, #f68616); }
-  .stage::before { top: -38px; inset-inline-start: 22px; }
+  .stage::before { top: -43px; inset-inline-start: 22px; }
   .stage-featured { grid-column: 1 / -1; grid-template-columns: auto 1fr; align-items: center; gap: 28px; padding: 26px 34px; }
   .stage-featured .stage-trophy { order: 0; margin: 0 8px; }
   .stage-featured .trophy-orb { width: 72px; height: 72px; border-radius: 22px; }
