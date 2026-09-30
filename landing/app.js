@@ -7,7 +7,7 @@
 const CONFIG = {
   checkoutUrl: "https://1powerpoint.acadimiat.com/direct-checkout/1/4837",
 
-  priceNow: 795,
+  priceNow: 300,
   priceWas: 1500,
   currency: "ريال",
   currencyCode: "SAR",
