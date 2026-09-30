@@ -10,15 +10,16 @@ landing/
 ├── app.js            # CONFIG (all page values) + behaviour
 ├── vercel.json       # caching + security headers
 └── assets/
-    ├── fonts/        # self-hosted El Messiri + IBM Plex Sans Arabic (OFL)
+    ├── fonts/        # Janna LT (client-supplied — needs a Linotype web-font licence)
     ├── img/          # before images, video posters, coach, certificate, brand mark, favicon
     ├── logos/        # client logos
-    └── video/        # "after" videos (1920×1080, H.264) + Mohammed Al-Zahrani testimonial
+    └── video/        # "after" videos 1920×1080 (WebM VP9 + MP4 H.264) + Mohammed Al-Zahrani testimonial
 ```
 
 ## Changing page values
 
-Everything lives in the `CONFIG` object at the top of `app.js`:
+Everything lives in the `CONFIG` object at the top of `app.js`
+(including `introVideoUrl`, the video after the hero, streamed from Acadimiat storage):
 price, old price, batch, seats, deadline (and the countdown), stats, links, social
 accounts, the trainee-community switch (`communityReady`) and pixel IDs.
 Change it there once and every place on the page updates.

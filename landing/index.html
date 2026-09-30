@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>تعلّم تصميم العروض التقديمية في 5 مراحل | نخبة البوربوينت</title>
   <meta name="description" content="دورة عملية بالعربي تعلّمك تحوّل تقاريرك ومعلوماتك إلى عروض بوربوينت احترافية بنفسك، بسيستم من 5 مراحل مع ملفات تطبيقية وشهادة إتمام. الدفعة 8 متاحة الآن.">
-  <meta name="theme-color" content="#11493c">
+  <meta name="theme-color" content="#f8f3ec">
   <script>document.documentElement.className = "js";</script>
   <meta name="robots" content="index, follow">
-
   <link rel="canonical" href="https://course.powerpoint-ksa.store/">
 
   <!-- Open Graph -->
@@ -26,63 +25,73 @@
   <link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/el-messiri-arabic.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/janna-lt-700.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/janna-lt-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-
-  <link rel="preload" as="image" href="assets/img/before-supply-960.webp" imagesrcset="assets/img/before-supply-960.webp 960w, assets/img/before-supply.webp 1910w" imagesizes="(min-width: 1120px) 1040px, calc(100vw - 32px)">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- ============ ICON SPRITE ============ -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="g-brand" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#4a927f"/><stop offset=".55" stop-color="#11493c"/><stop offset="1" stop-color="#f68616"/>
+      </linearGradient>
+      <linearGradient id="g-star" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f6a33a"/><stop offset="1" stop-color="#c46b12"/>
+      </linearGradient>
+    </defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5m6-6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-cert" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 8.5h10M7 11.5h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15.5 14.5l-1.5 6 2.5-1.4 2.5 1.4-1.5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-seat" viewBox="0 0 24 24"><path d="M7 11V6.5A2.5 2.5 0 0 1 9.5 4h5A2.5 2.5 0 0 1 17 6.5V11M5 11h14l-1 5H6zM7 16v4M17 16v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-slide" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 17v3M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.2 8.4a2 2 0 1 1 2.6 2.4c-.5.2-.8.6-.8 1.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r=".9" fill="currentColor"/></symbol>
+    <symbol id="i-order" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4.5 5l1-1v4M4 11.5c.4-.6 2-.8 2 .3 0 .9-2 1.4-2 2.7h2M4 17h1.5a.9.9 0 0 1 0 1.8H4.6h.9a.9.9 0 0 1 0 1.8H4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 7.5h8M7 4v7" stroke="currentColor" stroke-width="1.5"/><path d="M13.5 7.5h3a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16.8 9.2l1.7 1.8 1.7-1.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20v-4M10 20v-6M15 20v-3M20 20v-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-clutter" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 8h5M6 11h8M6 14h4M13 14h5M15 8h3M6 16.5h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12.5" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8.5v4.2l2.8 1.8M9.5 2.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 17.5h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 12.5l9 5 9-5M3 16.5l9 5 9-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M9 9v12" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="15" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v3.5M8.5 21h7M9.5 21l.5-3.5h4l.5 3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 48 40"><path d="M20 4C10 7 4 14 4 24v12h14V22H11c0-6 3.5-10 10-12zM44 4c-10 3-16 10-16 20v12h14V22h-7c0-6 3.5-10 10-12z" /></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3.1-5.4 3.1 1.2-6-4.5-4.2 6.1-.7z"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5zM15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <!-- page-wide ambient background (same as the hero, fixed behind every section) -->
+  <div class="page-bg" aria-hidden="true">
+    <span class="bg-blob bg-blob-green"></span>
+    <span class="bg-blob bg-blob-orange"></span>
+    <span class="bg-blob bg-blob-green2"></span>
+    <span class="bg-grid"></span>
+  </div>
+
   <a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
 
-  <!-- ============ HEADER ============ -->
+  <!-- ============ HEADER: logo + one CTA only ============ -->
   <header class="site-header" data-header>
-    <div class="container header-inner">
+    <div class="container container-wide header-inner">
       <a class="brand" href="#top" aria-label="نخبة البوربوينت — العودة للأعلى">
         <img class="brand-mark" src="assets/img/mark-ivory-96.png" width="40" height="40" alt="شعار نخبة البوربوينت">
         <span class="brand-name">نخبة البوربوينت</span>
       </a>
-
-      <nav class="nav-desktop" aria-label="التنقل الرئيسي">
-        <a href="#results">النتائج</a>
-        <a href="#system">السيستم</a>
-        <a href="#coach">المدربة</a>
-        <a href="#reviews">آراء المتدربين</a>
-        <a href="#faq">الأسئلة</a>
-      </nav>
-
-      <a class="btn btn-primary btn-sm header-cta" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك</a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
-        <span class="sr-only">فتح القائمة</span>
-        <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-      </button>
-    </div>
-
-    <div class="mobile-menu" id="mobile-menu" data-menu hidden>
-      <nav class="container" aria-label="قائمة الجوال">
-        <a href="#results">النتائج قبل وبعد</a>
-        <a href="#system">السيستم (5 مراحل)</a>
-        <a href="#coach">المدربة</a>
-        <a href="#reviews">آراء المتدربين</a>
-        <a href="#pricing">السعر</a>
-        <a href="#faq">الأسئلة الشائعة</a>
-        <a class="btn btn-primary btn-block" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك بـ <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
-      </nav>
+      <a class="btn btn-primary btn-sm" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك</a>
     </div>
   </header>
 
   <main id="main">
 
     <!-- ============ 1. HERO ============ -->
-    <section class="hero section-ambient" id="top" data-hero>
-      <div class="ambient" aria-hidden="true">
-        <span class="blob blob-green"></span>
-        <span class="blob blob-orange"></span>
-        <span class="grid-overlay"></span>
-      </div>
-
+    <section class="hero" id="top" data-hero>
       <div class="container hero-inner" data-parallax>
         <p class="badge reveal"><span class="badge-dot" aria-hidden="true"></span>برنامج نخبة البوربوينت · <span data-cfg="batch">الدفعة 8</span></p>
 
@@ -92,22 +101,24 @@
 
         <div class="cta-group reveal">
           <a class="btn btn-primary btn-lg" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك بـ <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
-          <a class="link-secondary" href="#results">شوف الفرق قبل وبعد <span class="arrow" aria-hidden="true">←</span></a>
+          <a class="link-secondary" href="#results">شوف الفرق قبل وبعد <svg class="ico" width="18" height="18"><use href="#i-arrow"/></svg></a>
         </div>
 
         <div class="proof reveal">
-          <span class="avatars" aria-hidden="true"><i>ع</i><i>ب</i><i>ر</i><i>و</i><i>م</i></span>
+          <span class="avatars" aria-hidden="true">
+            <img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt="">
+          </span>
           <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span> من 5</span>
         </div>
 
-        <ul class="chips reveal" role="list">
-          <li><span class="check" aria-hidden="true">✓</span> وصول لمدة سنة كاملة</li>
-          <li><span class="check" aria-hidden="true">✓</span> شهادة إتمام باسمك</li>
-          <li><span class="check" aria-hidden="true">✓</span> <span data-cfg="seats">100</span> مقعد فقط لهالدفعة</li>
+        <ul class="perks reveal" role="list">
+          <li><span class="perk-ico"><svg width="18" height="18"><use href="#i-calendar"/></svg></span>وصول لمدة سنة كاملة</li>
+          <li><span class="perk-ico"><svg width="18" height="18"><use href="#i-cert"/></svg></span>شهادة إتمام باسمك</li>
+          <li><span class="perk-ico"><svg width="18" height="18"><use href="#i-seat"/></svg></span><span><span data-cfg="seats">100</span> مقعد فقط لهالدفعة</span></li>
         </ul>
 
-        <div class="countdown reveal" data-countdown aria-live="off">
-          <p class="countdown-label">باقي على إغلاق التسجيل (<span data-cfg="deadlineLabel">25 أكتوبر</span>)</p>
+        <div class="countdown reveal" data-countdown>
+          <p class="countdown-label">ينتهي التسجيل (<span data-cfg="deadlineLabel">25 أكتوبر</span>) خلال</p>
           <div class="countdown-cells" role="timer" aria-label="الوقت المتبقي على إغلاق التسجيل">
             <span><b data-cd="d">--</b><small>يوم</small></span>
             <span><b data-cd="h">--</b><small>ساعة</small></span>
@@ -116,49 +127,124 @@
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="container container-wide hero-visual reveal">
-        <figure class="ba" data-ba>
-          <div class="ba-stage">
-            <video class="ba-after" muted playsinline preload="none" poster="assets/img/poster-supply.webp" data-src="assets/video/after-supply.mp4" data-start="9" aria-label="بعد: نفس التقرير بعد إعادة بنائه كعرض احترافي (فيديو)"></video>
-            <div class="ba-before">
-              <img src="assets/img/before-supply-960.webp" srcset="assets/img/before-supply-960.webp 960w, assets/img/before-supply.webp 1910w" sizes="(min-width: 1120px) 1040px, calc(100vw - 32px)" width="1910" height="1075" alt="قبل: شرائح تقرير سلسلة الإمداد بجداول ورسوم مزدحمة" fetchpriority="high">
-            </div>
-            <span class="ba-tag ba-tag-before">قبل</span>
-            <button class="ba-tag ba-tag-after" type="button" data-video-open="assets/video/after-supply.mp4" data-video-title="تقرير أداء — بعد">
-              <span class="rec-dot" aria-hidden="true"></span> بعد · شاهد الفيديو
-            </button>
-            <div class="ba-handle" role="slider" tabindex="0" aria-label="اسحب للمقارنة بين قبل وبعد" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50٪ قبل">
-              <span class="ba-line" aria-hidden="true"></span>
-              <span class="ba-knob" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </div>
-          </div>
-          <figcaption class="ba-caption">
-            <span>تقرير أداء: من جدول مزدحم إلى 3 أرقام واضحة</span>
-            <button class="ba-pause" type="button" data-ba-toggle aria-pressed="false">إيقاف الفيديو</button>
-          </figcaption>
-        </figure>
+    <!-- ============ 1b. INTRO VIDEO ============ -->
+    <section class="intro-video" aria-label="الفيديو التعريفي للبرنامج">
+      <div class="container container-wide reveal">
+        <div class="video-card grad-border" data-intro-video>
+          <video playsinline preload="none" poster="assets/img/poster-hero.webp" width="1920" height="1080" data-src="https://public.acadimiat.com/801wgd5m92m9xlwdhjq6z9rtvbzmepyqeafcrpapdyfznvtegk.mp4" aria-label="الفيديو التعريفي لبرنامج نخبة البوربوينت"></video>
+          <button class="video-cover" type="button" data-intro-play>
+            <span class="play-orb" aria-hidden="true"><svg width="30" height="30"><use href="#i-play"/></svg></span>
+            <span class="video-cover-label"><span class="rec-dot" aria-hidden="true"></span> شاهد الفيديو التعريفي · 1:54</span>
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- ============ 2. CLIENTS ============ -->
-    <section class="clients" aria-labelledby="clients-title">
-      <div class="container">
-        <p class="section-label center" id="clients-title">المدربة صمّمت فعليًا لجهات مثل</p>
+    <!-- ============ 2. PROBLEM ============ -->
+    <section class="section" aria-labelledby="problem-title">
+      <div class="container text-block">
+        <p class="section-label reveal">المشكلة الحقيقية</p>
+        <h2 class="h2 reveal" id="problem-title">ممكن تعرف تستخدم البوربوينت… بس هل تعرف <span class="grad-text">تبني عرض؟</span></h2>
+        <p class="lead reveal">تعرف تضيف نص وصورة وجدول. لكن أول ما يجيك تقرير طويل، أو اجتماع مهم، أو عرض لازم تسلّمه للإدارة… تبدأ الأسئلة:</p>
       </div>
-      <div class="marquee" data-marquee>
-        <ul class="marquee-track" role="list">
-          <li><img src="assets/logos/moi.webp" width="160" height="160" alt="وزارة الداخلية" loading="lazy"></li>
-          <li><img src="assets/logos/prisons.webp" width="153" height="160" alt="المديرية العامة للسجون" loading="lazy"></li>
-          <li><img src="assets/logos/jeddah-health.webp" width="168" height="160" alt="تجمع جدة الصحي" loading="lazy"></li>
-          <li><img src="assets/logos/energy.webp" width="423" height="160" alt="وزارة الطاقة" loading="lazy"></li>
-          <li><img src="assets/logos/alamoudi.webp" width="679" height="160" alt="شركة سعيد محمد العمودي (العمودي للإطارات)" loading="lazy"></li>
-          <li><img src="assets/logos/barns.webp" width="266" height="160" alt="بارنز كافيه" loading="lazy"></li>
+
+      <div class="container container-mid">
+        <ul class="pains" role="list">
+          <li class="pain glass reveal">
+            <span class="orb"><svg width="26" height="26"><use href="#i-slide"/></svg></span>
+            <p>وش أحط في الشريحة؟</p>
+          </li>
+          <li class="pain glass reveal">
+            <span class="orb"><svg width="26" height="26"><use href="#i-order"/></svg></span>
+            <p>كيف أرتّب كل هالمعلومات؟</p>
+          </li>
+          <li class="pain glass reveal">
+            <span class="orb"><svg width="26" height="26"><use href="#i-chart"/></svg></span>
+            <p>كيف أحوّل هالجدول لشيء مفهوم؟</p>
+          </li>
+          <li class="pain glass reveal">
+            <span class="orb"><svg width="26" height="26"><use href="#i-clutter"/></svg></span>
+            <p>ليش العرض مزدحم مع إن المعلومات صحيحة؟</p>
+          </li>
+          <li class="pain pain-wide glass reveal">
+            <span class="orb"><svg width="26" height="26"><use href="#i-clock"/></svg></span>
+            <p>كيف أخليه احترافي بدون ما أقضي ساعات في كل شريحة؟</p>
+          </li>
+        </ul>
+
+        <div class="punchline glass-strong grad-border reveal">
+          <span class="orb orb-lg" aria-hidden="true"><svg width="28" height="28"><use href="#i-bulb"/></svg></span>
+          <p>المشكلة غالبًا مو في معرفة أدوات PowerPoint. <strong class="grad-text">المشكلة إنك ما عندك سيستم تبني فيه العرض.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. THE SYSTEM ============ -->
+    <section class="section" id="system" aria-labelledby="system-title">
+      <div class="container text-block">
+        <p class="section-label reveal">السيستم</p>
+        <h2 class="h2 reveal" id="system-title">من ملف قديم إلى عرض احترافي <span class="grad-text">في 5 مراحل</span></h2>
+        <p class="lead reveal">ما تحتاج تصير مصمم جرافيك، ولا تحفظ مئات الأدوات. تحتاج سيستم واحد يشتغل على أي ملف.</p>
+      </div>
+
+      <div class="container container-wide">
+        <ol class="stages" role="list" data-stages>
+          <li class="stages-track" aria-hidden="true"><span class="stages-fill"></span></li>
+          <li class="stage glass reveal">
+            <div class="stage-head"><span class="stage-num">01</span><span class="orb orb-sm"><svg width="20" height="20"><use href="#i-target"/></svg></span></div>
+            <h3>افهم</h3><p>تحدد هدف العرض، والجمهور، والرسالة اللي لازم توصل.</p>
+          </li>
+          <li class="stage glass reveal">
+            <div class="stage-head"><span class="stage-num">02</span><span class="orb orb-sm"><svg width="20" height="20"><use href="#i-order"/></svg></span></div>
+            <h3>رتّب</h3><p>تحوّل المعلومات المتفرقة إلى تسلسل واضح للشرائح.</p>
+          </li>
+          <li class="stage glass reveal">
+            <div class="stage-head"><span class="stage-num">03</span><span class="orb orb-sm"><svg width="20" height="20"><use href="#i-palette"/></svg></span></div>
+            <h3>صمّم</h3><p>تبني الشريحة بالتكوين والمساحات والخطوط والألوان.</p>
+          </li>
+          <li class="stage glass reveal">
+            <div class="stage-head"><span class="stage-num">04</span><span class="orb orb-sm"><svg width="20" height="20"><use href="#i-spark"/></svg></span></div>
+            <h3>طوّر</h3><p>ترفع المستوى بالإنفوجرافيك والبيانات و <span lang="en">Morph</span> و <span lang="en">Zoom</span>.</p>
+          </li>
+          <li class="stage stage-featured glass-strong grad-border reveal">
+            <div class="stage-trophy" aria-hidden="true">
+              <span class="trophy-orb"><svg width="34" height="34"><use href="#i-trophy"/></svg></span>
+              <span class="trophy-ring"></span>
+            </div>
+            <div class="stage-body">
+              <div class="stage-head"><span class="stage-num">05</span></div>
+              <h3>أخرج</h3><p>تجمع كل شيء وتسلّم عرض كامل لأي ملف تقرر تصممه.</p>
+              <span class="stage-badge"><svg width="14" height="14"><use href="#i-cert"/></svg> النتيجة: عرض كامل + شهادة إتمام</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="skills-marquee reveal" aria-label="المهارات اللي بتتعلمها">
+        <ul class="skills-track" role="list" data-skills>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>التخطيط وتسلسل الشرائح قبل التصميم</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>المحاذاة والمساحات والتباين والخطوط</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>تحويل النصوص والقوائم إلى تصميم</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>الإنفوجرافيك: مراحل، عمليات، مقارنات</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>الجداول والرسوم البيانية والأرقام</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg><span lang="en">Slide Master</span> و <span lang="en">Morph</span> و <span lang="en">Zoom</span> والحركات</li>
         </ul>
       </div>
+
+      <div class="container text-block">
+        <div class="cta-group reveal">
+          <a class="btn btn-primary btn-lg" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">ابدأ السيستم الآن — <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
+        </div>
+        <div class="proof reveal">
+          <span class="avatars" aria-hidden="true"><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""></span>
+          <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span></span>
+        </div>
+      </div>
     </section>
 
-    <!-- ============ 3. BEFORE / AFTER ============ -->
+    <!-- ============ 4. BEFORE / AFTER (tabs, one work at a time) ============ -->
     <section class="section" id="results" aria-labelledby="results-title">
       <div class="container text-block">
         <p class="section-label reveal">شوف الفرق بعينك</p>
@@ -166,82 +252,87 @@
         <p class="lead reveal">أنت ما تحتاج معلومات أكثر. تحتاج تعرف كيف تعرض المعلومات اللي عندك.</p>
       </div>
 
-      <div class="container container-wide ba-list">
-        <figure class="ba reveal" data-ba>
-          <div class="ba-stage">
-            <video class="ba-after" muted playsinline preload="none" poster="assets/img/poster-supply.webp" data-src="assets/video/after-supply.mp4" data-start="9" aria-label="بعد: تقرير الأداء كلوحات أرقام واضحة (فيديو)"></video>
-            <div class="ba-before">
-              <img src="assets/img/before-supply-960.webp" srcset="assets/img/before-supply-960.webp 960w, assets/img/before-supply.webp 1910w" sizes="(min-width: 1120px) 1040px, calc(100vw - 32px)" width="1910" height="1075" alt="قبل: تقرير أداء بجداول مزدحمة" loading="lazy" decoding="async">
-            </div>
-            <span class="ba-tag ba-tag-before">قبل</span>
-            <button class="ba-tag ba-tag-after" type="button" data-video-open="assets/video/after-supply.mp4" data-video-title="تقرير أداء — بعد"><span class="rec-dot" aria-hidden="true"></span> بعد · شاهد الفيديو</button>
-            <div class="ba-handle" role="slider" tabindex="0" aria-label="اسحب للمقارنة: تقرير أداء" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50٪ قبل">
-              <span class="ba-line" aria-hidden="true"></span>
-              <span class="ba-knob" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="container container-wide works reveal" data-works>
+        <div class="tabs glass" role="tablist" aria-label="اختر نموذج">
+          <button class="tab" role="tab" id="tab-1" aria-controls="work-1" aria-selected="true">تقرير أداء</button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="work-2" aria-selected="false" tabindex="-1">عرض اجتماع</button>
+          <button class="tab" role="tab" id="tab-3" aria-controls="work-3" aria-selected="false" tabindex="-1">تقرير إنجازات</button>
+          <span class="tab-indicator" aria-hidden="true"></span>
+        </div>
+
+        <div class="work glass-strong" role="tabpanel" id="work-1" aria-labelledby="tab-1">
+          <div class="work-before">
+            <button class="shot shot-before" type="button" data-img-open="assets/img/before-supply.webp" data-img-alt="قبل: شرائح تقرير أداء بجداول مزدحمة">
+              <img src="assets/img/before-supply-960.webp" width="960" height="540" alt="قبل: شرائح تقرير أداء بجداول مزدحمة" loading="lazy" decoding="async">
+              <span class="shot-zoom" aria-hidden="true"><svg width="14" height="14"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="work-note">
+              <span class="pill pill-before">قبل</span>
+              <p><b>تقرير أداء</b> من جدول مزدحم إلى 3 أرقام واضحة</p>
             </div>
           </div>
-          <figcaption class="ba-caption">
-            <span><b>تقرير أداء:</b> من جدول مزدحم إلى 3 أرقام واضحة</span>
-            <button class="ba-pause" type="button" data-ba-toggle aria-pressed="false">إيقاف الفيديو</button>
-          </figcaption>
-        </figure>
-
-        <figure class="ba reveal" data-ba>
-          <div class="ba-stage">
-            <video class="ba-after" muted playsinline preload="none" poster="assets/img/poster-hajj.webp" data-src="assets/video/after-hajj.mp4" data-start="6" aria-label="بعد: ملخص موسم الحج كعرض بتسلسل منطقي (فيديو)"></video>
-            <div class="ba-before">
-              <img src="assets/img/before-hajj-960.webp" srcset="assets/img/before-hajj-960.webp 960w, assets/img/before-hajj.webp 1915w" sizes="(min-width: 1120px) 1040px, calc(100vw - 32px)" width="1915" height="1072" alt="قبل: مستند نصي طويل عن موسم الحج" loading="lazy" decoding="async">
-            </div>
-            <span class="ba-tag ba-tag-before">قبل</span>
-            <button class="ba-tag ba-tag-after" type="button" data-video-open="assets/video/after-hajj.mp4" data-video-title="عرض اجتماع — بعد"><span class="rec-dot" aria-hidden="true"></span> بعد · شاهد الفيديو</button>
-            <div class="ba-handle" role="slider" tabindex="0" aria-label="اسحب للمقارنة: عرض اجتماع" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50٪ قبل">
-              <span class="ba-line" aria-hidden="true"></span>
-              <span class="ba-knob" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="work-link" aria-hidden="true"><svg width="18" height="18"><use href="#i-arrow"/></svg></span>
+          <div class="work-after">
+            <div class="shot shot-after">
+              <video muted playsinline preload="none" poster="assets/img/poster-supply.webp" data-start="9" width="1920" height="1080" aria-label="بعد: تقرير الأداء كلوحات أرقام واضحة (فيديو)">
+                <source data-src="assets/video/after-supply.webm" type="video/webm">
+                <source data-src="assets/video/after-supply.mp4" type="video/mp4">
+              </video>
+              <span class="pill pill-after"><span class="rec-dot" aria-hidden="true"></span> بعد · فيديو</span>
+              <button class="shot-full" type="button" data-video-open="assets/video/after-supply" data-video-title="تقرير أداء — بعد"><svg width="14" height="14"><use href="#i-expand"/></svg> شاهد كاملًا</button>
             </div>
           </div>
-          <figcaption class="ba-caption">
-            <span><b>عرض اجتماع:</b> من نص طويل إلى تسلسل منطقي</span>
-            <button class="ba-pause" type="button" data-ba-toggle aria-pressed="false">إيقاف الفيديو</button>
-          </figcaption>
-        </figure>
+        </div>
 
-        <figure class="ba reveal" data-ba>
-          <div class="ba-stage">
-            <video class="ba-after" muted playsinline preload="none" poster="assets/img/poster-saad.webp" data-src="assets/video/after-saad.mp4" data-start="15" aria-label="بعد: تقرير الإنجازات كلوحة مؤشرات (فيديو)"></video>
-            <div class="ba-before">
-              <img src="assets/img/before-saad-960.webp" srcset="assets/img/before-saad-960.webp 960w, assets/img/before-saad.webp 1910w" sizes="(min-width: 1120px) 1040px, calc(100vw - 32px)" width="1910" height="1087" alt="قبل: تقرير إنجازات مكتوب كنص في مستند" loading="lazy" decoding="async">
-            </div>
-            <span class="ba-tag ba-tag-before">قبل</span>
-            <button class="ba-tag ba-tag-after" type="button" data-video-open="assets/video/after-saad.mp4" data-video-title="تقرير إنجازات — بعد"><span class="rec-dot" aria-hidden="true"></span> بعد · شاهد الفيديو</button>
-            <div class="ba-handle" role="slider" tabindex="0" aria-label="اسحب للمقارنة: تقرير إنجازات" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50٪ قبل">
-              <span class="ba-line" aria-hidden="true"></span>
-              <span class="ba-knob" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="work glass-strong" role="tabpanel" id="work-2" aria-labelledby="tab-2" hidden>
+          <div class="work-before">
+            <button class="shot shot-before" type="button" data-img-open="assets/img/before-hajj.webp" data-img-alt="قبل: مستند نصي طويل عن موسم الحج">
+              <img src="assets/img/before-hajj-960.webp" width="960" height="537" alt="قبل: مستند نصي طويل عن موسم الحج" loading="lazy" decoding="async">
+              <span class="shot-zoom" aria-hidden="true"><svg width="14" height="14"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="work-note">
+              <span class="pill pill-before">قبل</span>
+              <p><b>عرض اجتماع</b> من نص طويل إلى تسلسل منطقي</p>
             </div>
           </div>
-          <figcaption class="ba-caption">
-            <span><b>تقرير إنجازات:</b> من مستند نصي إلى لوحة مؤشرات</span>
-            <button class="ba-pause" type="button" data-ba-toggle aria-pressed="false">إيقاف الفيديو</button>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+          <span class="work-link" aria-hidden="true"><svg width="18" height="18"><use href="#i-arrow"/></svg></span>
+          <div class="work-after">
+            <div class="shot shot-after">
+              <video muted playsinline preload="none" poster="assets/img/poster-hajj.webp" data-start="6" width="1920" height="1080" aria-label="بعد: ملخص موسم الحج كعرض بتسلسل منطقي (فيديو)">
+                <source data-src="assets/video/after-hajj.webm" type="video/webm">
+                <source data-src="assets/video/after-hajj.mp4" type="video/mp4">
+              </video>
+              <span class="pill pill-after"><span class="rec-dot" aria-hidden="true"></span> بعد · فيديو</span>
+              <button class="shot-full" type="button" data-video-open="assets/video/after-hajj" data-video-title="عرض اجتماع — بعد"><svg width="14" height="14"><use href="#i-expand"/></svg> شاهد كاملًا</button>
+            </div>
+          </div>
+        </div>
 
-    <!-- ============ 4. PROBLEM ============ -->
-    <section class="section section-ivory" aria-labelledby="problem-title">
-      <div class="container text-block">
-        <p class="section-label reveal">المشكلة الحقيقية</p>
-        <h2 class="h2 reveal" id="problem-title">ممكن تعرف تستخدم البوربوينت… بس هل تعرف <span class="grad-text">تبني عرض؟</span></h2>
-        <p class="lead reveal">تعرف تضيف نص وصورة وجدول. لكن أول ما يجيك تقرير طويل، أو اجتماع مهم، أو عرض لازم تسلّمه للإدارة… تبدأ الأسئلة:</p>
+        <div class="work glass-strong" role="tabpanel" id="work-3" aria-labelledby="tab-3" hidden>
+          <div class="work-before">
+            <button class="shot shot-before" type="button" data-img-open="assets/img/before-saad.webp" data-img-alt="قبل: تقرير إنجازات مكتوب كنص في مستند">
+              <img src="assets/img/before-saad-960.webp" width="960" height="546" alt="قبل: تقرير إنجازات مكتوب كنص في مستند" loading="lazy" decoding="async">
+              <span class="shot-zoom" aria-hidden="true"><svg width="14" height="14"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="work-note">
+              <span class="pill pill-before">قبل</span>
+              <p><b>تقرير إنجازات</b> من مستند نصي إلى لوحة مؤشرات</p>
+            </div>
+          </div>
+          <span class="work-link" aria-hidden="true"><svg width="18" height="18"><use href="#i-arrow"/></svg></span>
+          <div class="work-after">
+            <div class="shot shot-after">
+              <video muted playsinline preload="none" poster="assets/img/poster-saad.webp" data-start="15" width="1920" height="1080" aria-label="بعد: تقرير الإنجازات كلوحة مؤشرات (فيديو)">
+                <source data-src="assets/video/after-saad.webm" type="video/webm">
+                <source data-src="assets/video/after-saad.mp4" type="video/mp4">
+              </video>
+              <span class="pill pill-after"><span class="rec-dot" aria-hidden="true"></span> بعد · فيديو</span>
+              <button class="shot-full" type="button" data-video-open="assets/video/after-saad" data-video-title="تقرير إنجازات — بعد"><svg width="14" height="14"><use href="#i-expand"/></svg> شاهد كاملًا</button>
+            </div>
+          </div>
+        </div>
 
-        <ul class="question-list" role="list">
-          <li class="card question reveal">وش أحط في الشريحة؟</li>
-          <li class="card question reveal">كيف أرتّب كل هالمعلومات؟</li>
-          <li class="card question reveal">كيف أحوّل هالجدول لشيء مفهوم؟</li>
-          <li class="card question reveal">ليش العرض مزدحم مع إن المعلومات صحيحة؟</li>
-          <li class="card question reveal">كيف أخليه احترافي بدون ما أقضي ساعات في كل شريحة؟</li>
-        </ul>
-
-        <p class="punchline reveal">المشكلة غالبًا مو في معرفة أدوات PowerPoint. <strong>المشكلة إنك ما عندك سيستم تبني فيه العرض.</strong></p>
+        <p class="works-hint">اضغط على «قبل» لتكبيرها، أو «شاهد كاملًا» لمشاهدة الفيديو</p>
       </div>
     </section>
 
@@ -254,12 +345,12 @@
 
       <div class="container container-wide reveal">
         <div class="compare" data-compare>
-          <table class="compare-table">
+          <table class="compare-table glass-strong">
             <caption class="sr-only">مقارنة بين برنامج نخبة البوربوينت ومقاطع يوتيوب والمصمم الخارجي والقوالب الجاهزة</caption>
             <thead>
               <tr>
                 <td></td>
-                <th scope="col" class="is-featured">برنامج نخبة البوربوينت</th>
+                <th scope="col" class="is-win">برنامج نخبة البوربوينت</th>
                 <th scope="col">مقاطع يوتيوب</th>
                 <th scope="col">مصمم خارجي</th>
                 <th scope="col">قوالب جاهزة</th>
@@ -268,81 +359,41 @@
             <tbody>
               <tr>
                 <th scope="row">المهارة تصير لك؟</th>
-                <td class="is-featured"><span class="yes">✓</span> نعم، تبنيها بنفسك</td>
-                <td>معلومات متفرقة</td>
-                <td>لا، تعتمد عليه كل مرة</td>
-                <td>لا، تنكسر أول ما تدخل بياناتك</td>
+                <td class="is-win">نعم، تبنيها بنفسك</td>
+                <td class="is-lose">معلومات متفرقة</td>
+                <td class="is-lose">لا، تعتمد عليه كل مرة</td>
+                <td class="is-lose">لا، تنكسر أول ما تدخل بياناتك</td>
               </tr>
               <tr>
                 <th scope="row">المسار</th>
-                <td class="is-featured"><span class="yes">✓</span> 5 مراحل مرتبة من الأساس للاحتراف</td>
-                <td>دروس عشوائية</td>
-                <td>ما تتعلم شيء</td>
-                <td>بدون مسار</td>
+                <td class="is-win">5 مراحل مرتبة من الأساس للاحتراف</td>
+                <td class="is-lose">دروس عشوائية</td>
+                <td class="is-lose">ما تتعلم شيء</td>
+                <td class="is-lose">بدون مسار</td>
               </tr>
               <tr>
                 <th scope="row">تطبيق على شغلك</th>
-                <td class="is-featured"><span class="yes">✓</span> ملفات تطبيقية وتطبيق عملي</td>
-                <td>مشاهدة بس</td>
-                <td>هو اللي يطبّق</td>
-                <td>تعبئة بس</td>
+                <td class="is-win">ملفات تطبيقية وتطبيق عملي</td>
+                <td class="is-lose">مشاهدة بس</td>
+                <td class="is-lose">هو اللي يطبّق</td>
+                <td class="is-lose">تعبئة بس</td>
               </tr>
               <tr>
                 <th scope="row">التكلفة</th>
-                <td class="is-featured"><span class="yes">✓</span> <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span> مرة وحدة</td>
-                <td>مجاني… بس على حساب وقتك</td>
-                <td>تدفع مع كل عرض جديد</td>
-                <td>سعر القالب + وقت التعديل</td>
+                <td class="is-win"><span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span> مرة وحدة</td>
+                <td class="is-lose">مجاني… بس على حساب وقتك</td>
+                <td class="is-lose">تدفع مع كل عرض جديد</td>
+                <td class="is-lose">سعر القالب + وقت التعديل</td>
               </tr>
             </tbody>
           </table>
-          <!-- mobile cards are generated from the table above by app.js -->
-          <div class="compare-cards" data-compare-cards></div>
+          <!-- mobile comparison is generated from the table by app.js -->
+          <div class="cmp-mobile" data-compare-mobile></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 6. THE SYSTEM ============ -->
-    <section class="section section-dark" id="system" aria-labelledby="system-title">
-      <div class="ambient" aria-hidden="true"><span class="blob blob-orange blob-dark"></span></div>
-      <div class="container text-block">
-        <p class="section-label on-dark reveal">السيستم</p>
-        <h2 class="h2 reveal" id="system-title">من ملف قديم إلى عرض احترافي <span class="grad-text-warm">في 5 مراحل</span></h2>
-        <p class="lead reveal">ما تحتاج تصير مصمم جرافيك، ولا تحفظ مئات الأدوات. تحتاج سيستم واحد يشتغل على أي ملف.</p>
-      </div>
-
-      <div class="container container-wide">
-        <ol class="stages" role="list" data-stages>
-          <li class="stages-line" aria-hidden="true"><span></span></li>
-          <li class="stage reveal"><span class="stage-num">01</span><h3>افهم</h3><p>تحدد هدف العرض، والجمهور، والرسالة اللي لازم توصل.</p></li>
-          <li class="stage reveal"><span class="stage-num">02</span><h3>رتّب</h3><p>تحوّل المعلومات المتفرقة إلى تسلسل واضح للشرائح.</p></li>
-          <li class="stage reveal"><span class="stage-num">03</span><h3>صمّم</h3><p>تبني الشريحة بالتكوين والمساحات والخطوط والألوان.</p></li>
-          <li class="stage reveal"><span class="stage-num">04</span><h3>طوّر</h3><p>ترفع المستوى بالإنفوجرافيك والبيانات و <span lang="en">Morph</span> و <span lang="en">Zoom</span>.</p></li>
-          <li class="stage stage-featured reveal"><span class="stage-num">05</span><h3>أخرج</h3><p>تجمع كل شيء وتسلّم عرض كامل لأي ملف تقرر تصممه.</p></li>
-        </ol>
-      </div>
-
-      <div class="container text-block">
-        <ul class="skills reveal" role="list">
-          <li>التخطيط وتسلسل الشرائح قبل التصميم</li>
-          <li>المحاذاة والمساحات والتباين والخطوط</li>
-          <li>تحويل النصوص والقوائم إلى تصميم</li>
-          <li>الإنفوجرافيك: مراحل، عمليات، مقارنات</li>
-          <li>الجداول والرسوم البيانية والأرقام</li>
-          <li><span lang="en">Slide Master</span> و <span lang="en">Morph</span> و <span lang="en">Zoom</span> والحركات</li>
-        </ul>
-
-        <div class="cta-group reveal">
-          <a class="btn btn-primary btn-lg" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">ابدأ السيستم الآن — <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
-        </div>
-        <div class="proof on-dark reveal">
-          <span class="avatars" aria-hidden="true"><i>ع</i><i>ب</i><i>ر</i><i>و</i><i>م</i></span>
-          <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 7. COACH ============ -->
+    <!-- ============ 6. COACH (+ client logos, static) ============ -->
     <section class="section" id="coach" aria-labelledby="coach-title">
       <div class="container text-block">
         <p class="section-label reveal">مدربتك</p>
@@ -352,121 +403,149 @@
           <img src="assets/img/coach.webp" width="900" height="1273" alt="الكوتش عواطف، مدربة برنامج نخبة البوربوينت، تقدّم عرضًا من خلف منصة" loading="lazy" decoding="async">
         </div>
 
-        <blockquote class="coach-quote reveal">
-          <p>«بنيت هذا البرنامج لتسترجع ثقتك بنفسك، لأني شفت المعاناة اللي يعيشها أغلب الناس في تقديم العروض التقديمية والتصميم.»</p>
-        </blockquote>
+        <div class="clients reveal" aria-labelledby="clients-title">
+          <p class="clients-title" id="clients-title">صمّمت فعليًا لجهات مثل</p>
+          <ul class="clients-grid glass" role="list">
+            <li><img src="assets/logos/moi.webp" width="160" height="160" alt="وزارة الداخلية" loading="lazy"></li>
+            <li><img src="assets/logos/prisons.webp" width="153" height="160" alt="المديرية العامة للسجون" loading="lazy"></li>
+            <li><img src="assets/logos/jeddah-health.webp" width="168" height="160" alt="تجمع جدة الصحي" loading="lazy"></li>
+            <li><img src="assets/logos/energy.webp" width="423" height="160" alt="وزارة الطاقة" loading="lazy"></li>
+            <li><img src="assets/logos/alamoudi.webp" width="679" height="160" alt="شركة سعيد محمد العمودي (العمودي للإطارات)" loading="lazy"></li>
+            <li><img src="assets/logos/barns.webp" width="266" height="160" alt="بارنز كافيه" loading="lazy"></li>
+          </ul>
+        </div>
+
+        <figure class="quote-card glass-strong reveal">
+          <svg class="quote-mark" width="56" height="46" aria-hidden="true"><use href="#i-quote"/></svg>
+          <blockquote>
+            <p>بنيت هذا البرنامج لتسترجع ثقتك بنفسك، لأني شفت المعاناة اللي يعيشها أغلب الناس في تقديم العروض التقديمية والتصميم.</p>
+          </blockquote>
+          <figcaption>
+            <img src="assets/img/coach.webp" width="44" height="44" alt="" loading="lazy">
+            <span><b>الكوتش عواطف</b><small>مؤسِّسة نخبة البوربوينت</small></span>
+          </figcaption>
+        </figure>
 
         <p class="body-text reveal">من 2022 وهي تصمم عروض وتقارير لجهات حكومية وصحية وشركات كبرى: عقد طويل مع تجمع جدة الصحي، والعمودي للإطارات، وتقارير سنوية لبارنز، وعروض مشاريع استثمارية. كل تقنية في البرنامج طبّقتها على عميل حقيقي قبل ما تعلّمها لك.</p>
       </div>
 
       <div class="container">
-        <dl class="stats" data-stats>
-          <div class="stat card reveal"><dt>عرض وتقرير مصمّم</dt><dd>+<span data-count="829" data-cfg="designs">829</span></dd></div>
-          <div class="stat card reveal"><dt>متدرب</dt><dd>+<span data-count="5382" data-format="comma" data-cfg="trainees">5,382</span></dd></div>
-          <div class="stat card reveal"><dt>سنوات خبرة ميدانية</dt><dd><span data-count="4" data-cfg="years">4</span></dd></div>
-          <div class="stat card reveal"><dt>تقييم المتدربين من 5</dt><dd><span data-count="4.95" data-decimals="2" data-cfg="rating">4.95</span></dd></div>
+        <dl class="stats">
+          <div class="stat glass reveal"><dt>عرض وتقرير مصمّم</dt><dd>+<span data-count="829" data-cfg="designs">829</span></dd></div>
+          <div class="stat glass reveal"><dt>متدرب</dt><dd>+<span data-count="5382" data-format="comma" data-cfg="trainees">5,382</span></dd></div>
+          <div class="stat glass reveal"><dt>سنوات خبرة ميدانية</dt><dd><span data-count="4" data-cfg="years">4</span></dd></div>
+          <div class="stat glass reveal"><dt>تقييم المتدربين من 5</dt><dd><span data-count="4.95" data-decimals="2" data-cfg="rating">4.95</span></dd></div>
         </dl>
       </div>
     </section>
 
-    <!-- ============ 8. TESTIMONIALS ============ -->
-    <section class="section section-ivory" id="reviews" aria-labelledby="reviews-title">
+    <!-- ============ 7. TESTIMONIALS ============ -->
+    <section class="section" id="reviews" aria-labelledby="reviews-title">
       <div class="container text-block">
         <p class="section-label reveal">لا تاخذ كلامنا</p>
         <h2 class="h2 reveal" id="reviews-title">اسمع من اللي <span class="grad-text">جرّب بنفسه</span></h2>
       </div>
 
       <div class="container container-wide">
-        <figure class="card testimonial testimonial-featured gradient-border reveal">
-          <div class="stars" role="img" aria-label="تقييم 5 من 5">★★★★★</div>
-          <blockquote>
-            <p>«اليوم أشارككم تجربتي: من شخص منبوذ بالشركة إلى موظف السنة الناجح. اشتراكي بالبرنامج كان أفضل شي سويته بحق نفسي، لأنه بعد الله كان أحد أسباب تقديمي للبرزنتيشن، ومن بعده بدأت مسيرة أنجح موظف لعام 2025.»</p>
-          </blockquote>
-          <figcaption><span class="t-avatar" aria-hidden="true">ع</span><span><b>عبدالرحمن</b><small>إداري</small></span></figcaption>
-        </figure>
-
-        <div class="testimonial-grid">
-          <figure class="card testimonial reveal">
-            <div class="stars" role="img" aria-label="تقييم 5 من 5">★★★★★</div>
-            <blockquote><p>«الشرح جدًا وافي ومبسّط، وصرت أسوي عروض تقديمية لوحدي.»</p></blockquote>
-            <figcaption><span class="t-avatar" aria-hidden="true">و</span><span><b>ولاء محمد</b><small>متدربة</small></span></figcaption>
-          </figure>
-          <figure class="card testimonial reveal">
-            <div class="stars" role="img" aria-label="تقييم 5 من 5">★★★★★</div>
-            <blockquote><p>«الدورة متكاملة جدًا، تغطي كل المهارات اللي تحتاجها للبوربوينت. استفدت بشكل كبير في شغلي.»</p></blockquote>
-            <figcaption><span class="t-avatar" aria-hidden="true">؟</span><span><b class="placeholder">[الاسم والوظيفة — بانتظار التأكيد]</b></span></figcaption>
-          </figure>
-          <figure class="card testimonial reveal">
-            <div class="stars" role="img" aria-label="تقييم 5 من 5">★★★★★</div>
-            <blockquote><p>«استفدت بشكل مرة كبير، والمدربة ترد بسرعة على الواتساب وتساعدني في التصاميم.»</p></blockquote>
-            <figcaption><span class="t-avatar" aria-hidden="true">؟</span><span><b class="placeholder">[الاسم والوظيفة — بانتظار التأكيد]</b></span></figcaption>
-          </figure>
-          <figure class="card testimonial reveal">
-            <div class="stars" role="img" aria-label="تقييم 5 من 5">★★★★★</div>
-            <blockquote><p>«مبدعين والله، الدورة فخمة مرة والتجاوب قوي من المدربة.»</p></blockquote>
-            <figcaption><span class="t-avatar" aria-hidden="true">؟</span><span><b class="placeholder">[الاسم والوظيفة — بانتظار التأكيد]</b></span></figcaption>
+        <div class="t-featured">
+          <figure class="t-card t-card-hero glass-strong grad-border reveal">
+            <div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <svg class="quote-mark quote-mark-sm" width="36" height="30" aria-hidden="true"><use href="#i-quote"/></svg>
+            <blockquote><p>اليوم أشارككم تجربتي: من شخص منبوذ بالشركة إلى موظف السنة الناجح. اشتراكي بالبرنامج كان أفضل شي سويته بحق نفسي، لأنه بعد الله كان أحد أسباب تقديمي للبرزنتيشن، ومن بعده بدأت مسيرة أنجح موظف لعام 2025.</p></blockquote>
+            <figcaption><img class="t-avatar" src="assets/img/avatar-m.webp" width="48" height="48" alt=""><span><b>عبدالرحمن</b><small>إداري</small></span></figcaption>
           </figure>
 
-          <!-- Video testimonial: Mohammed Al-Zahrani — always last -->
-          <figure class="card testimonial testimonial-video reveal" data-tvideo>
+          <figure class="t-card t-card-video glass-strong grad-border reveal" data-tvideo>
             <div class="tvideo-frame">
-              <video preload="none" playsinline poster="assets/img/poster-testimonial.webp" data-src="assets/video/testimonial-mohammed.mp4" width="1036" height="474" aria-label="شهادة صوتية من المتدرب محمد الزهراني"></video>
-              <button class="tvideo-play" type="button" data-tvideo-play>
-                <span class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              <video preload="none" playsinline poster="assets/img/poster-testimonial.webp" width="1036" height="474" aria-label="شهادة صوتية من المتدرب محمد الزهراني">
+                <source data-src="assets/video/testimonial-mohammed.webm" type="video/webm">
+                <source data-src="assets/video/testimonial-mohammed.mp4" type="video/mp4">
+              </video>
+              <button class="video-cover" type="button" data-tvideo-play>
+                <span class="play-orb" aria-hidden="true"><svg width="26" height="26"><use href="#i-play"/></svg></span>
+                <span class="video-cover-label"><span class="rec-dot" aria-hidden="true"></span> شهادة صوتية · اضغط للتشغيل</span>
                 <span class="sr-only">تشغيل شهادة محمد الزهراني بالصوت</span>
               </button>
-              <span class="video-badge" aria-hidden="true"><span class="rec-dot"></span> شهادة صوتية · اضغط للتشغيل</span>
             </div>
-            <figcaption><span class="t-avatar" aria-hidden="true">م</span><span><b>محمد الزهراني</b><small>متدرب · تعليق صوتي</small></span></figcaption>
+            <figcaption><img class="t-avatar" src="assets/img/avatar-m.webp" width="48" height="48" alt=""><span><b>محمد الزهراني</b><small>متدرب · <svg width="14" height="14" aria-hidden="true"><use href="#i-sound"/></svg> تعليق صوتي</small></span></figcaption>
           </figure>
         </div>
+      </div>
 
-        <div class="closing-card reveal">
+      <div class="t-carousel reveal" data-carousel aria-roledescription="carousel" aria-label="آراء المتدربين">
+        <div class="t-carousel-head container container-wide">
+          <p class="t-carousel-title">وآراء أكثر من المتدربين</p>
+          <div class="t-arrows">
+            <button class="arrow-btn glass" type="button" data-car-prev aria-label="الرأي السابق"><svg width="20" height="20"><use href="#i-chev-r"/></svg></button>
+            <button class="arrow-btn glass" type="button" data-car-next aria-label="الرأي التالي"><svg width="20" height="20"><use href="#i-chev-l"/></svg></button>
+          </div>
+        </div>
+        <ul class="t-track" role="list" data-car-track tabindex="0" aria-label="قائمة الآراء — مرّر أفقيًا">
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p>الدورة فتحت عيني على أخطاء كنت أسويها من زمان بدون ما أدري، خصوصًا في اختيار الألوان وترتيب النقاط.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-m.webp" width="40" height="40" alt=""><b>خالد الشمري</b></p></li>
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p>شكرًا أستاذة عواطف على البرنامج الرائع، فعلًا استفدت منك كتير، خصوصًا في طريقة ترتيب الأفكار وتحويلها إلى عرض احترافي. أسلوبك في الشرح واضح وسهل، والتطبيق معك خلاني أشوف البوربوينت بطريقة مختلفة تمامًا.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-f.webp" width="40" height="40" alt=""><b>الجوهرة</b></p></li>
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p><span lang="en">Honestly</span> ما توقعت الفرق يكون بهالحجم. تعلمت أشياء عن ال <span lang="en">layout</span> وال <span lang="en">spacing</span> كانت ناقصتني من زمان. <span lang="en">literally</span> غيّرت شكل شغلي كامل، صارت عروضي احترافية بشكل ثاني.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-f.webp" width="40" height="40" alt=""><span><b>لمى القحطاني</b><small lang="en">Content Creator</small></span></p></li>
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p>تجربة أفتخر إني كنت جزء منها. شكرًا أستاذة عواطف على المجهود والشرح والتوجيه المستمر. أكثر شيء أعجبني إن كل معلومة كانت مرتبطة بتطبيق فعلي، وهذا ساعدني كثير في تطوير مستوى عروضي التقديمية.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-m.webp" width="40" height="40" alt=""><b>أدهم</b></p></li>
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p>لاحظت إني كنت غلطان بأشياء بسيطة بس مؤثرة، مثل تباين الألوان وحجم الخط. الدورة وضحت هالنقاط وصار عندي عين نقدية أراجع فيها حق عروضي القديمة.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-m.webp" width="40" height="40" alt=""><span><b>سامر خليل</b><small>مدير مشروع</small></span></p></li>
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p>أكبر فايدة كانت في عرض الأرقام والبيانات. صرت أعرف كيف أحول الجدول الممل إلى رسم بياني يفهمه أي حد من أول نظرة، وهذا غير تعاملي مع التقارير كامل.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-f.webp" width="40" height="40" alt=""><b>هيا الدوسري</b></p></li>
+          <li class="t-card glass"><div class="stars" role="img" aria-label="تقييم 5 من 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+            <blockquote><p>كل الشكر والتقدير لك أستاذة عواطف. البرنامج كان من أفضل التجارب التدريبية اللي خضتها، ما كان مجرد شرح للأدوات، بل تعلمنا كيف نفكر ونبني عرض يوصل الفكرة بشكل احترافي. شكرًا على وقتك واهتمامك بالتفاصيل.</p></blockquote>
+            <p class="t-who"><img class="t-avatar" src="assets/img/avatar-m.webp" width="40" height="40" alt=""><b>مراد</b></p></li>
+        </ul>
+      </div>
+
+      <div class="container container-wide">
+        <div class="closing-card glass-strong grad-border reveal">
           <p>المهارة تبان لما تبدأ تستخدمها بنفسك وتفهم السيستم.</p>
           <a class="btn btn-primary btn-lg" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">انضم للدفعة <span data-cfg="batchNumber">8</span></a>
-          <div class="proof on-dark">
-            <span class="avatars" aria-hidden="true"><i>ع</i><i>ب</i><i>ر</i><i>و</i><i>م</i></span>
+          <div class="proof">
+            <span class="avatars" aria-hidden="true"><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""></span>
             <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 9. FOR / NOT FOR ============ -->
+    <!-- ============ 8. FOR / NOT FOR ============ -->
     <section class="section" aria-labelledby="fit-title">
-      <div class="container text-block">
-        <h2 class="sr-only" id="fit-title">لمن البرنامج؟</h2>
-      </div>
+      <h2 class="sr-only" id="fit-title">لمن البرنامج؟</h2>
       <div class="container container-wide fit-grid">
-        <div class="card fit fit-yes reveal">
+        <div class="fit fit-yes glass-strong reveal">
           <h3>البرنامج لك إذا كنت…</h3>
           <ul role="list">
-            <li>تشتغل على تقارير وعروض بشكل متكرر، وكل شريحة تاخذ منك وقت أطول من اللازم</li>
-            <li>تقدّم للإدارة أو العملاء، وتبغى شغلك يطلع بمستوى احترافي</li>
-            <li>تعتمد على غيرك في التصميم، وتبغى تسويها بنفسك</li>
-            <li>تعرف أساسيات PowerPoint، بس نتايجك لسا عادية</li>
-            <li>تشوف عروض احترافية وتقول: «كيف سووا هالشريحة؟»</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>تشتغل على تقارير وعروض بشكل متكرر، وكل شريحة تاخذ منك وقت أطول من اللازم</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>تقدّم للإدارة أو العملاء، وتبغى شغلك يطلع بمستوى احترافي</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>تعتمد على غيرك في التصميم، وتبغى تسويها بنفسك</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>تعرف أساسيات PowerPoint، بس نتايجك لسا عادية</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>تشوف عروض احترافية وتقول: «كيف سووا هالشريحة؟»</li>
           </ul>
         </div>
-        <div class="card fit fit-no reveal">
+        <div class="fit fit-no glass reveal">
           <h3>وغالبًا مو لك إذا…</h3>
           <ul role="list">
-            <li>تدور دورة تشرح وين مكان كل زر وبس</li>
-            <li>تبغى أحد يصمم لك بدل ما تتعلم — <a data-cfg-href="designServiceUrl" href="https://wa.me/966569886979" target="_blank" rel="noopener">خدمة التصميم حسب الطلب</a> تناسبك أكثر</li>
+            <li><span class="mark mark-no"><svg width="14" height="14"><use href="#i-x"/></svg></span>تدور دورة تشرح وين مكان كل زر وبس</li>
+            <li><span class="mark mark-no"><svg width="14" height="14"><use href="#i-x"/></svg></span><span>تبغى أحد يصمم لك بدل ما تتعلم — <a data-cfg-href="designServiceUrl" href="https://wa.me/966569886979" target="_blank" rel="noopener">خدمة التصميم حسب الطلب</a> تناسبك أكثر</span></li>
           </ul>
         </div>
       </div>
       <div class="container text-block">
-        <p class="fit-bottom reveal">البرنامج لمن يبغى يمتلك المهارة، مو بس يتفرج على دروس.</p>
+        <p class="fit-bottom reveal">البرنامج لمن يبغى <span class="grad-text">يمتلك المهارة،</span> مو بس يتفرج على دروس.</p>
       </div>
     </section>
 
-    <!-- ============ 10. PRICING ============ -->
-    <section class="section section-ambient pricing" id="pricing" aria-labelledby="pricing-title">
-      <div class="ambient" aria-hidden="true">
-        <span class="blob blob-green"></span>
-        <span class="blob blob-orange"></span>
-      </div>
+    <!-- ============ 9. PRICING ============ -->
+    <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="container text-block">
         <p class="section-label reveal">الاستثمار</p>
         <h2 class="h2 reveal" id="pricing-title">مهارة تستخدمها <span class="grad-text">كل مرة</span> تفتح فيها PowerPoint.</h2>
@@ -474,19 +553,19 @@
       </div>
 
       <div class="container">
-        <div class="price-card gradient-border reveal">
+        <div class="price-card glass-strong grad-border reveal">
           <p class="price-name">برنامج نخبة البوربوينت · <span data-cfg="batch">الدفعة 8</span></p>
           <p class="price-row">
-            <span class="price-now"><span data-cfg="priceNow">795</span> <small data-cfg="currency">ريال</small></span>
+            <span class="price-now"><span class="grad-text" data-cfg="priceNow">795</span> <small data-cfg="currency">ريال</small></span>
             <s class="price-was"><span class="sr-only">بدلًا من </span><span data-cfg="priceWas">1500</span> <span data-cfg="currency">ريال</span></s>
           </p>
           <ul class="price-list" role="list">
-            <li>البرنامج التدريبي كامل (5 مراحل)</li>
-            <li>ملفات تطبيقية تطبّق عليها أثناء التعلم</li>
-            <li>مصادر وقوالب مساعدة</li>
-            <li>وصول لمدة سنة كاملة</li>
-            <li>شهادة إتمام باسمك توصلك على الإيميل</li>
-            <li data-community hidden>مجتمع المتدربين</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>البرنامج التدريبي كامل (5 مراحل)</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>ملفات تطبيقية تطبّق عليها أثناء التعلم</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>مصادر وقوالب مساعدة</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>وصول لمدة سنة كاملة</li>
+            <li><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>شهادة إتمام باسمك توصلك على الإيميل</li>
+            <li data-community hidden><span class="mark mark-yes"><svg width="14" height="14"><use href="#i-check"/></svg></span>مجتمع المتدربين</li>
           </ul>
           <a class="btn btn-primary btn-lg btn-block" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك الآن</a>
           <p class="price-note"><span data-cfg="seats">100</span> مقعد فقط · <span data-deadline-line>التسجيل مفتوح حتى <span data-cfg="deadlineLabel">25 أكتوبر</span></span> · وصول مباشر بعد الاشتراك</p>
@@ -499,60 +578,64 @@
             </div>
           </div>
           <div class="proof">
-            <span class="avatars" aria-hidden="true"><i>ع</i><i>ب</i><i>ر</i><i>و</i><i>م</i></span>
+            <span class="avatars" aria-hidden="true"><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""></span>
             <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span></span>
           </div>
         </div>
 
-        <figure class="certificate reveal">
-          <img src="assets/img/certificate.webp" width="1000" height="693" alt="نموذج شهادة إتمام برنامج نخبة البوربوينت" loading="lazy" decoding="async">
-          <figcaption>شهادة إتمام باسمك توصلك على الإيميل</figcaption>
-        </figure>
-
-        <div class="promise reveal">
-          <h3>وعدنا لك</h3>
-          <p>بعد البرنامج، تسلّم أي ملف وأنت واثق من شغلك.</p>
+        <div class="price-extras">
+          <figure class="certificate glass reveal">
+            <img src="assets/img/certificate.webp" width="1000" height="693" alt="نموذج شهادة إتمام برنامج نخبة البوربوينت" loading="lazy" decoding="async">
+            <figcaption><svg width="16" height="16" aria-hidden="true"><use href="#i-cert"/></svg> شهادة إتمام باسمك توصلك على الإيميل</figcaption>
+          </figure>
+          <div class="promise glass reveal">
+            <span class="orb orb-sm" aria-hidden="true"><svg width="20" height="20"><use href="#i-target"/></svg></span>
+            <div>
+              <h3>وعدنا لك</h3>
+              <p>بعد البرنامج، تسلّم أي ملف وأنت واثق من شغلك.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ 11. FAQ ============ -->
-    <section class="section section-ivory" id="faq" aria-labelledby="faq-title">
+    <!-- ============ 10. FAQ ============ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
       <div class="container text-block">
         <p class="section-label reveal">إزالة التردد</p>
         <h2 class="h2 reveal" id="faq-title">قبل أن تبدأ، غالبًا عندك واحد من <span class="grad-text">هذه الأسئلة…</span></h2>
       </div>
       <div class="container">
         <div class="faq" data-faq>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn">هل أحتاج أن أفهم أو أعرف البرنامج مسبقًا؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-1" role="region" aria-labelledby="faq-1-btn"><div><p>لا. البرنامج مصمم ليعلّمك طريقة بناء العرض باستخدام PowerPoint، وليس لتأهيلك كمصمم جرافيك.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn">هل يناسبني إذا كنت أستخدم PowerPoint في العمل؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-2" role="region" aria-labelledby="faq-2-btn"><div><p>نعم، وهذا أحد الاستخدامات الأساسية للبرنامج: التقارير، الاجتماعات، البيانات والعروض المهنية.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn">هل البرنامج مناسب للمبتدئ؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-3" role="region" aria-labelledby="faq-3-btn"><div><p>نعم. نبدأ بأساس البرنامج لتفهم البيئة وتعرف كيف تتعوّد عليها بشكل دوري.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-4" id="faq-4-btn">هل أستطيع تطبيق ما أتعلمه على عروض عملي؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-4" role="region" aria-labelledby="faq-4-btn"><div><p>نعم، وهذا هو الهدف من التطبيق العملي والملفات التدريبية.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn">هل أحتاج اشتراكًا في برامج إضافية؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-5" role="region" aria-labelledby="faq-5-btn"><div><p>تحتاج PowerPoint ضمن اشتراك Microsoft 365، وغالبًا يكون متوفر عندك إذا كنت مشترك في خدمات مايكروسوفت.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-6" id="faq-6-btn">متى أستطيع البدء؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-6" role="region" aria-labelledby="faq-6-btn"><div><p>بعد إتمام الاشتراك والوصول إلى البرنامج مباشرة.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-7" id="faq-7-btn">كم مدة الوصول؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-7" role="region" aria-labelledby="faq-7-btn"><div><p>سنة كاملة.</p></div></div>
           </div>
-          <div class="faq-item reveal">
+          <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-8" id="faq-8-btn">هل توجد شهادة؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
             <div class="faq-panel" id="faq-8" role="region" aria-labelledby="faq-8-btn"><div><p>نعم، شهادة إتمامك للبرنامج باسمك، توصلك على الإيميل.</p></div></div>
           </div>
@@ -560,19 +643,20 @@
       </div>
     </section>
 
-    <!-- ============ 12. FINAL CTA ============ -->
-    <section class="section section-dark final-cta" aria-labelledby="final-title">
-      <div class="ambient" aria-hidden="true"><span class="blob blob-orange blob-dark"></span></div>
-      <div class="container text-block">
-        <h2 class="h2 h2-xl reveal" id="final-title">عرضك الجاي… <span class="grad-text-warm">ابنِه بنفسك.</span></h2>
-        <p class="lead reveal">ما تحتاج ساعات أكثر. تحتاج سيستم يخلي PowerPoint أداة في يدك، بدل ما يكون مهمة تاخذ من وقتك كل مرة.</p>
-        <div class="cta-group reveal">
-          <a class="btn btn-primary btn-lg" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك بـ <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
-        </div>
-        <p class="final-line reveal"><span data-cfg="seats">100</span> مقعد فقط للدفعة <span data-cfg="batchNumber">8</span> · <span data-deadline-line>التسجيل مفتوح حتى <span data-cfg="deadlineLabel">25 أكتوبر</span></span></p>
-        <div class="proof on-dark reveal">
-          <span class="avatars" aria-hidden="true"><i>ع</i><i>ب</i><i>ر</i><i>و</i><i>م</i></span>
-          <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span></span>
+    <!-- ============ 11. FINAL CTA ============ -->
+    <section class="section final-cta" aria-labelledby="final-title">
+      <div class="container container-wide">
+        <div class="final-panel glass-strong grad-border reveal">
+          <h2 class="h2 h2-xl" id="final-title">عرضك الجاي… <span class="grad-text">ابنِه بنفسك.</span></h2>
+          <p class="lead">ما تحتاج ساعات أكثر. تحتاج سيستم يخلي PowerPoint أداة في يدك، بدل ما يكون مهمة تاخذ من وقتك كل مرة.</p>
+          <div class="cta-group">
+            <a class="btn btn-primary btn-lg" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837">احجز مقعدك بـ <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
+          </div>
+          <p class="final-line"><span data-cfg="seats">100</span> مقعد فقط للدفعة <span data-cfg="batchNumber">8</span> · <span data-deadline-line>التسجيل مفتوح حتى <span data-cfg="deadlineLabel">25 أكتوبر</span></span></p>
+          <div class="proof">
+            <span class="avatars" aria-hidden="true"><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""><img src="assets/img/avatar-f.webp" width="30" height="30" alt=""><img src="assets/img/avatar-m.webp" width="30" height="30" alt=""></span>
+            <span>+<span data-cfg="trainees">5,382</span> متدرب · تقييم <span data-cfg="rating">4.95</span></span>
+          </div>
         </div>
       </div>
     </section>
@@ -580,26 +664,28 @@
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <a class="brand" href="#top">
-        <img class="brand-mark" src="assets/img/mark-green-96.png" width="40" height="40" alt="" loading="lazy">
-        <span class="brand-name">نخبة البوربوينت</span>
-      </a>
-      <ul class="social" role="list">
-        <li><a data-cfg-href="social.tiktok" href="https://www.tiktok.com/@1powerpoint" target="_blank" rel="noopener" aria-label="تيك توك @1powerpoint">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.3 7.3 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg><span>TikTok</span></a></li>
-        <li><a data-cfg-href="social.youtube" href="https://youtube.com/@1powerpoint" target="_blank" rel="noopener" aria-label="يوتيوب @1powerpoint">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg><span>YouTube</span></a></li>
-        <li><a data-cfg-href="social.instagram" href="https://www.instagram.com/1power.point1" target="_blank" rel="noopener" aria-label="إنستغرام @1power.point1">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm6-7.9a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 7.1zM21.9 8a5.5 5.5 0 0 0-1.5-3.9A5.5 5.5 0 0 0 16.5 2.6C15 2.5 9 2.5 7.5 2.6a5.5 5.5 0 0 0-3.9 1.5A5.5 5.5 0 0 0 2.1 8C2 9.5 2 14.5 2.1 16a5.5 5.5 0 0 0 1.5 3.9 5.5 5.5 0 0 0 3.9 1.5c1.5.1 7.5.1 9 0a5.5 5.5 0 0 0 3.9-1.5 5.5 5.5 0 0 0 1.5-3.9c.1-1.5.1-6.5 0-8zm-2 9.7a3.1 3.1 0 0 1-1.7 1.7c-1.2.5-4 .4-5.2.4s-4.1.1-5.2-.4a3.1 3.1 0 0 1-1.8-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.2a3.1 3.1 0 0 1 1.7-1.8c1.2-.5 4-.4 5.3-.4s4.1-.1 5.2.4a3.1 3.1 0 0 1 1.7 1.7c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg><span>Instagram</span></a></li>
-        <li><a data-cfg-href="social.whatsapp" href="https://wa.me/966569886979" target="_blank" rel="noopener" aria-label="واتساب">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5a.6.6 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3 3 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.8L.2 24l6.3-1.7A11.8 11.8 0 0 0 24 12a11.7 11.7 0 0 0-3.5-8.5z"/></svg><span>WhatsApp</span></a></li>
-      </ul>
-      <nav class="footer-links" aria-label="روابط قانونية">
-        <a data-cfg-href="links.privacy" href="https://powerpoint-ksa.store/privacy-policy">سياسة الاسترجاع والخصوصية</a>
-        <a data-cfg-href="links.terms" href="https://powerpoint-ksa.store/terms-condition">الشروط والأحكام</a>
-      </nav>
-      <p class="copyright">© 2026 نخبة البوربوينت</p>
+    <div class="container container-wide">
+      <div class="footer-inner glass">
+        <a class="brand" href="#top">
+          <img class="brand-mark" src="assets/img/mark-green-96.png" width="44" height="44" alt="" loading="lazy">
+          <span class="brand-name">نخبة البوربوينت</span>
+        </a>
+        <ul class="social" role="list">
+          <li><a data-cfg-href="social.tiktok" href="https://www.tiktok.com/@1powerpoint" target="_blank" rel="noopener" aria-label="تيك توك @1powerpoint">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.3 7.3 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg></a></li>
+          <li><a data-cfg-href="social.youtube" href="https://youtube.com/@1powerpoint" target="_blank" rel="noopener" aria-label="يوتيوب @1powerpoint">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg></a></li>
+          <li><a data-cfg-href="social.instagram" href="https://www.instagram.com/1power.point1" target="_blank" rel="noopener" aria-label="إنستغرام @1power.point1">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm6-7.9a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 7.1zM21.9 8a5.5 5.5 0 0 0-1.5-3.9A5.5 5.5 0 0 0 16.5 2.6C15 2.5 9 2.5 7.5 2.6a5.5 5.5 0 0 0-3.9 1.5A5.5 5.5 0 0 0 2.1 8C2 9.5 2 14.5 2.1 16a5.5 5.5 0 0 0 1.5 3.9 5.5 5.5 0 0 0 3.9 1.5c1.5.1 7.5.1 9 0a5.5 5.5 0 0 0 3.9-1.5 5.5 5.5 0 0 0 1.5-3.9c.1-1.5.1-6.5 0-8zm-2 9.7a3.1 3.1 0 0 1-1.7 1.7c-1.2.5-4 .4-5.2.4s-4.1.1-5.2-.4a3.1 3.1 0 0 1-1.8-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.2a3.1 3.1 0 0 1 1.7-1.8c1.2-.5 4-.4 5.3-.4s4.1-.1 5.2.4a3.1 3.1 0 0 1 1.7 1.7c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a></li>
+          <li><a data-cfg-href="social.whatsapp" href="https://wa.me/966569886979" target="_blank" rel="noopener" aria-label="واتساب">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5a.6.6 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3 3 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM20.5 3.5A11.8 11.8 0 0 0 1.9 17.8L.2 24l6.3-1.7A11.8 11.8 0 0 0 24 12a11.7 11.7 0 0 0-3.5-8.5z"/></svg></a></li>
+        </ul>
+        <nav class="footer-links" aria-label="روابط قانونية">
+          <a data-cfg-href="links.privacy" href="https://powerpoint-ksa.store/privacy-policy">سياسة الاسترجاع والخصوصية</a>
+          <a data-cfg-href="links.terms" href="https://powerpoint-ksa.store/terms-condition">الشروط والأحكام</a>
+        </nav>
+        <p class="copyright">© 2026 نخبة البوربوينت</p>
+      </div>
     </div>
   </footer>
 
@@ -608,12 +694,14 @@
     <a class="btn btn-primary btn-block" data-cta href="https://1powerpoint.acadimiat.com/direct-checkout/1/4837" tabindex="-1">احجز مقعدك — <span data-cfg="priceNow">795</span> <span data-cfg="currency">ريال</span></a>
   </div>
 
-  <!-- ============ VIDEO DIALOG ============ -->
-  <dialog class="video-dialog" data-video-dialog aria-label="فيديو بعد">
-    <div class="video-dialog-inner">
-      <button class="video-close" type="button" data-video-close aria-label="إغلاق الفيديو">✕</button>
-      <p class="video-dialog-title" data-video-dialog-title></p>
-      <video controls playsinline muted loop preload="none"></video>
+  <!-- ============ MEDIA DIALOG (full video / enlarged "before") ============ -->
+  <dialog class="media-dialog" data-media-dialog aria-label="عرض مكبّر">
+    <div class="media-dialog-inner">
+      <button class="media-close" type="button" data-media-close aria-label="إغلاق">
+        <svg width="18" height="18"><use href="#i-x"/></svg>
+      </button>
+      <p class="media-title" data-media-title></p>
+      <div class="media-slot" data-media-slot></div>
     </div>
   </dialog>
 

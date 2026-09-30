@@ -32,6 +32,9 @@ const CONFIG = {
 
   designServiceUrl: "https://wa.me/966569886979",
 
+  // Intro video after the hero (streams from Acadimiat storage)
+  introVideoUrl: "https://public.acadimiat.com/801wgd5m92m9xlwdhjq6z9rtvbzmepyqeafcrpapdyfznvtegk.mp4",
+
   social: {
     tiktok: "https://www.tiktok.com/@1powerpoint",
     youtube: "https://youtube.com/@1powerpoint",
@@ -62,6 +65,8 @@ const CONFIG = {
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const fmt = (n, decimals = 0) =>
     Number(n).toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  const svgIcon = (id, size = 14) =>
+    `<svg width="${size}" height="${size}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
   /* ---------- 1. Fill config values ---------- */
   const cfgText = {
@@ -81,7 +86,6 @@ const CONFIG = {
     const key = el.dataset.cfg;
     if (key in cfgText) el.textContent = cfgText[key];
   });
-  // keep count-up targets in sync with CONFIG
   const countTargets = { designs: CONFIG.designs, trainees: CONFIG.trainees, years: CONFIG.years, rating: CONFIG.rating };
   $$("[data-count][data-cfg]").forEach((el) => {
     if (el.dataset.cfg in countTargets) el.dataset.count = countTargets[el.dataset.cfg];
@@ -101,8 +105,7 @@ const CONFIG = {
     document.head.appendChild(s);
   };
   if (P.tiktok) {
-    /* TikTok Pixel base code */
-    !(function (w, d, t) {
+    !(function (w, t) {
       w.TiktokAnalyticsObject = t;
       const ttq = (w[t] = w[t] || []);
       ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"];
@@ -117,17 +120,16 @@ const CONFIG = {
       };
       ttq.load(P.tiktok);
       ttq.page();
-    })(window, document, "ttq");
+    })(window, "ttq");
   }
   if (P.meta) {
-    /* Meta Pixel base code */
-    !(function (f, b, e, v, n) {
+    !(function (f) {
       if (f.fbq) return;
-      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      const n = (f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); });
       if (!f._fbq) f._fbq = n;
       n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
-      loadScript(v);
-    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      loadScript("https://connect.facebook.net/en_US/fbevents.js");
+    })(window);
     window.fbq("init", P.meta);
     window.fbq("track", "PageView");
   }
@@ -144,7 +146,6 @@ const CONFIG = {
     loadScript("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(P.ga4));
   }
   const anyPixel = Boolean(P.tiktok || P.meta || P.ga4 || P.gtm);
-
   const trackCheckout = (label) => {
     const payload = { value: CONFIG.priceNow, currency: CONFIG.currencyCode, content_name: "برنامج نخبة البوربوينت", content_id: CONFIG.batch };
     try {
@@ -156,46 +157,28 @@ const CONFIG = {
   };
 
   /* ---------- 3. CTAs → checkout with UTM / click-ids preserved ---------- */
-  const buildCheckoutUrl = () => {
+  const checkoutUrl = (() => {
     const url = new URL(CONFIG.checkoutUrl);
-    const incoming = new URLSearchParams(window.location.search);
-    incoming.forEach((value, key) => {
-      if (/^utm_/i.test(key) || ["ttclid", "fbclid", "gclid", "wbraid", "gbraid"].includes(key.toLowerCase())) {
-        url.searchParams.set(key, value);
-      }
+    new URLSearchParams(window.location.search).forEach((value, key) => {
+      if (/^utm_/i.test(key) || ["ttclid", "fbclid", "gclid", "wbraid", "gbraid"].includes(key.toLowerCase())) url.searchParams.set(key, value);
     });
     return url.toString();
-  };
-  const checkoutUrl = buildCheckoutUrl();
+  })();
   $$("[data-cta]").forEach((a) => {
     a.href = checkoutUrl;
     a.addEventListener("click", (e) => {
       trackCheckout(a.textContent.trim());
-      if (!anyPixel) return; // nothing to wait for
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      if (!anyPixel || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
       setTimeout(() => (window.location.href = checkoutUrl), 300); // let pixels flush
     });
   });
 
-  /* ---------- 4. Header, mobile menu, sticky bar ---------- */
+  /* ---------- 4. Header + sticky bar ---------- */
   const header = $("[data-header]");
   const onScrollHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
   onScrollHeader();
   window.addEventListener("scroll", onScrollHeader, { passive: true });
-
-  const toggle = $("[data-menu-toggle]");
-  const menu = $("[data-menu]");
-  const setMenu = (open) => {
-    toggle.setAttribute("aria-expanded", String(open));
-    $(".sr-only", toggle).textContent = open ? "إغلاق القائمة" : "فتح القائمة";
-    menu.hidden = !open;
-  };
-  toggle.addEventListener("click", () => setMenu(menu.hidden));
-  $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !menu.hidden) { setMenu(false); toggle.focus(); }
-  });
 
   const sticky = $("[data-sticky]");
   const hero = $("[data-hero]");
@@ -204,6 +187,7 @@ const CONFIG = {
     new IntersectionObserver(([entry]) => {
       const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
       sticky.classList.toggle("is-visible", show);
+      document.documentElement.classList.toggle("sticky-on", show);
       sticky.setAttribute("aria-hidden", String(!show));
       stickyLink.tabIndex = show ? 0 : -1;
     }).observe(hero);
@@ -220,14 +204,13 @@ const CONFIG = {
       entries.forEach((entry) => {
         if (entry.isIntersecting) { entry.target.classList.add("is-in"); io.unobserve(entry.target); }
       });
-    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
     reveals.forEach((el) => io.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add("is-in"));
   }
 
   /* ---------- 6. Count-up stats ---------- */
-  const countEls = $$("[data-count]");
   const renderCount = (el, v) => {
     const decimals = Number(el.dataset.decimals || 0);
     el.textContent = el.dataset.format === "comma" || decimals ? fmt(v, decimals) : String(Math.round(v));
@@ -240,11 +223,9 @@ const CONFIG = {
         cio.unobserve(el);
         const target = Number(el.dataset.count);
         const start = performance.now();
-        const dur = 1400;
         const step = (now) => {
-          const t = Math.min((now - start) / dur, 1);
-          const eased = 1 - Math.pow(1 - t, 4);
-          renderCount(el, target * eased);
+          const t = Math.min((now - start) / 1400, 1);
+          renderCount(el, target * (1 - Math.pow(1 - t, 4)));
           if (t < 1) requestAnimationFrame(step);
           else renderCount(el, target);
         };
@@ -252,7 +233,7 @@ const CONFIG = {
         requestAnimationFrame(step);
       });
     }, { threshold: 0.5 });
-    countEls.forEach((el) => cio.observe(el));
+    $$("[data-count]").forEach((el) => cio.observe(el));
   }
 
   /* ---------- 7. Countdown to the real deadline ---------- */
@@ -286,147 +267,173 @@ const CONFIG = {
   tick();
   cdTimer = setInterval(tick, 1000);
 
-  /* ---------- 8. Before / after sliders (after = video) ---------- */
+  /* ---------- 8. Video helpers (lazy sources, start offset) ---------- */
   const loadVideo = (video) => {
-    if (video.src || !video.dataset.src) return;
+    if (video.dataset.loaded) return;
+    video.dataset.loaded = "1";
     const start = Number(video.dataset.start || 0);
     if (start) {
-      // skip the intro frames and loop from the first meaningful frame
+      // skip intro frames and loop from the first meaningful frame
       video.addEventListener("loadedmetadata", () => { video.currentTime = start; }, { once: true });
       video.addEventListener("ended", () => { video.currentTime = start; video.play().catch(() => {}); });
     }
-    video.src = video.dataset.src;
+    const sources = $$("source[data-src]", video);
+    if (sources.length) sources.forEach((s) => (s.src = s.dataset.src));
+    else if (video.dataset.src) video.src = video.dataset.src;
     video.load();
   };
 
-  $$("[data-ba]").forEach((fig) => {
-    const stage = $(".ba-stage", fig);
-    const handle = $(".ba-handle", fig);
-    const video = $(".ba-after", fig);
-    const pauseBtn = $("[data-ba-toggle]", fig);
-    let pos = 50;
-    let userPaused = reduceMotion;
-
-    const setPos = (p) => {
-      pos = Math.max(0, Math.min(100, p));
-      stage.style.setProperty("--pos", pos.toFixed(2));
-      handle.setAttribute("aria-valuenow", String(Math.round(pos)));
-      handle.setAttribute("aria-valuetext", `${Math.round(pos)}٪ قبل`);
-    };
-    // "before" is anchored to the right edge, so position is measured from the right
-    const fromPointer = (clientX) => {
-      const r = stage.getBoundingClientRect();
-      return ((r.right - clientX) / r.width) * 100;
-    };
-
-    let dragging = false;
-    stage.addEventListener("dragstart", (e) => e.preventDefault());
-    stage.addEventListener("pointerdown", (e) => {
-      if (e.target.closest("button")) return;
-      dragging = true;
-      stage.classList.add("is-dragging");
-      stage.setPointerCapture(e.pointerId);
-      setPos(fromPointer(e.clientX));
+  /* intro video: plays with sound on tap */
+  const intro = $("[data-intro-video]");
+  if (intro) {
+    const v = $("video", intro);
+    if (CONFIG.introVideoUrl) v.dataset.src = CONFIG.introVideoUrl;
+    $("[data-intro-play]", intro).addEventListener("click", () => {
+      loadVideo(v);
+      v.controls = true;
+      v.muted = false;
+      intro.classList.add("is-playing");
+      v.play().catch(() => {});
+      v.focus({ preventScroll: true });
     });
-    stage.addEventListener("pointermove", (e) => { if (dragging) setPos(fromPointer(e.clientX)); });
-    const end = () => { dragging = false; stage.classList.remove("is-dragging"); };
-    stage.addEventListener("pointerup", end);
-    stage.addEventListener("pointercancel", end);
+  }
 
-    handle.addEventListener("keydown", (e) => {
-      const map = { ArrowLeft: 5, ArrowRight: -5, PageUp: 20, PageDown: -20 };
-      if (e.key in map) { setPos(pos + map[e.key]); e.preventDefault(); }
-      else if (e.key === "Home") { setPos(100); e.preventDefault(); }
-      else if (e.key === "End") { setPos(0); e.preventDefault(); }
+  /* video testimonial: plays with sound on tap */
+  $$("[data-tvideo]").forEach((card) => {
+    const v = $("video", card);
+    $("[data-tvideo-play]", card).addEventListener("click", () => {
+      loadVideo(v);
+      v.controls = true;
+      v.muted = false;
+      card.classList.add("is-playing");
+      v.play().catch(() => {});
+      v.focus({ preventScroll: true });
     });
-
-    const syncBtn = () => {
-      const playing = !video.paused;
-      pauseBtn.textContent = playing ? "إيقاف الفيديو" : "تشغيل الفيديو";
-      pauseBtn.setAttribute("aria-pressed", String(!playing));
-    };
-    video.addEventListener("play", syncBtn);
-    video.addEventListener("pause", syncBtn);
-    pauseBtn.addEventListener("click", () => {
-      loadVideo(video);
-      if (video.paused) { userPaused = false; video.play().catch(() => {}); }
-      else { userPaused = true; video.pause(); }
-    });
-    syncBtn();
-
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          loadVideo(video);
-          if (!userPaused) video.play().catch(() => {});
-        } else if (!video.paused) {
-          video.pause();
-        }
-      }, { threshold: 0.25, rootMargin: "200px 0px" }).observe(stage);
-    }
-    setPos(50);
   });
 
-  /* ---------- 9. Full-video dialog ---------- */
-  const dialog = $("[data-video-dialog]");
-  const dVideo = dialog ? $("video", dialog) : null;
-  const dTitle = dialog ? $("[data-video-dialog-title]", dialog) : null;
+  /* ---------- 9. Before / after — tabs, one work at a time ---------- */
+  const works = $("[data-works]");
+  if (works) {
+    const tabs = $$('[role="tab"]', works);
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute("aria-controls")));
+    const tablist = $('[role="tablist"]', works);
+    let current = 0;
+    let inView = false;
+
+    const syncVideos = () => {
+      panels.forEach((p, i) => {
+        const v = $("video", p);
+        if (i === current && inView && !reduceMotion) { loadVideo(v); v.play().catch(() => {}); }
+        else v.pause();
+      });
+    };
+    const select = (i, focus = false) => {
+      current = (i + tabs.length) % tabs.length;
+      tabs.forEach((t, k) => {
+        const on = k === current;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        panels[k].hidden = !on;
+      });
+      tablist.style.setProperty("--tab", current);
+      if (focus) tabs[current].focus();
+      syncVideos();
+    };
+    tabs.forEach((t, i) => t.addEventListener("click", () => select(i)));
+    tablist.addEventListener("keydown", (e) => {
+      // RTL: ArrowLeft = next tab, ArrowRight = previous tab
+      const map = { ArrowLeft: 1, ArrowRight: -1 };
+      if (e.key in map) { select(current + map[e.key], true); e.preventDefault(); }
+      else if (e.key === "Home") { select(0, true); e.preventDefault(); }
+      else if (e.key === "End") { select(tabs.length - 1, true); e.preventDefault(); }
+    });
+    // swipe between works on touch screens
+    let x0 = null, y0 = null;
+    panels.forEach((p) => {
+      p.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+      p.addEventListener("touchend", (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        const dy = e.changedTouches[0].clientY - y0;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) select(current + (dx > 0 ? 1 : -1)); // RTL: swipe right → next
+        x0 = y0 = null;
+      });
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; syncVideos(); }, { threshold: 0.3 }).observe(works);
+    }
+    select(0);
+  }
+
+  /* ---------- 10. Media dialog: full "after" video or enlarged "before" ---------- */
+  const dialog = $("[data-media-dialog]");
+  const slot = dialog && $("[data-media-slot]", dialog);
+  const dTitle = dialog && $("[data-media-title]", dialog);
+  const openDialog = (node, title) => {
+    if (!dialog || typeof dialog.showModal !== "function") return false;
+    slot.replaceChildren(node);
+    dTitle.textContent = title || "";
+    dialog.showModal();
+    return true;
+  };
   $$("[data-video-open]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const src = btn.dataset.videoOpen;
-      if (!dialog || typeof dialog.showModal !== "function") { window.open(src, "_blank", "noopener"); return; }
-      dTitle.textContent = btn.dataset.videoTitle || "";
-      dVideo.src = src;
-      dialog.showModal();
-      dVideo.play().catch(() => {});
+      const base = btn.dataset.videoOpen;
+      const v = document.createElement("video");
+      v.controls = true; v.playsInline = true; v.muted = true; v.autoplay = true;
+      v.innerHTML = `<source src="${base}.webm" type="video/webm"><source src="${base}.mp4" type="video/mp4">`;
+      if (!openDialog(v, btn.dataset.videoTitle)) window.open(base + ".mp4", "_blank", "noopener");
+      else v.play().catch(() => {});
+    });
+  });
+  $$("[data-img-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const img = new Image();
+      img.src = btn.dataset.imgOpen;
+      img.alt = btn.dataset.imgAlt || "";
+      if (!openDialog(img, "قبل")) window.open(btn.dataset.imgOpen, "_blank", "noopener");
     });
   });
   if (dialog) {
-    $("[data-video-close]", dialog).addEventListener("click", () => dialog.close());
+    $("[data-media-close]", dialog).addEventListener("click", () => dialog.close());
     dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
-    dialog.addEventListener("close", () => { dVideo.pause(); dVideo.removeAttribute("src"); dVideo.load(); });
+    dialog.addEventListener("close", () => {
+      const v = $("video", slot);
+      if (v) { v.pause(); v.removeAttribute("src"); v.load(); }
+      slot.replaceChildren();
+    });
   }
 
-  /* ---------- 10. Video testimonial (plays with sound on tap) ---------- */
-  $$("[data-tvideo]").forEach((card) => {
-    const video = $("video", card);
-    $("[data-tvideo-play]", card).addEventListener("click", () => {
-      loadVideo(video);
-      video.muted = false;
-      video.controls = true;
-      card.classList.add("is-playing");
-      video.play().catch(() => {});
-      video.focus({ preventScroll: true });
-    });
-  });
-
-  /* ---------- 11. Comparison → stacked cards on mobile ---------- */
+  /* ---------- 11. Comparison: icons in the table + a clear mobile layout ---------- */
   const compare = $("[data-compare]");
   if (compare) {
     const table = $("table", compare);
-    const cardsWrap = $("[data-compare-cards]", compare);
-    const heads = $$("thead th", table);
+    const heads = $$("thead th", table).map((th) => th.textContent.trim());
     const rows = $$("tbody tr", table);
-    heads.forEach((th, col) => {
-      const featured = th.classList.contains("is-featured");
-      const card = document.createElement("article");
-      card.className = "card compare-card" + (featured ? " is-featured gradient-border" : "");
-      const h = document.createElement("h3");
-      h.textContent = th.textContent;
-      card.appendChild(h);
-      const dl = document.createElement("dl");
-      rows.forEach((tr) => {
-        const row = document.createElement("div");
-        row.className = "row";
-        const dt = document.createElement("dt");
-        dt.textContent = $("th", tr).textContent;
-        const dd = document.createElement("dd");
-        dd.innerHTML = tr.children[col + 1].innerHTML;
-        row.append(dt, dd);
-        dl.appendChild(row);
+    // desktop table: ✓ in the winning column, ✕ in the others
+    rows.forEach((tr) => {
+      $$("td", tr).forEach((td) => {
+        const win = td.classList.contains("is-win");
+        td.innerHTML = `<span class="cell"><span class="mark ${win ? "mark-yes" : "mark-no"}">${svgIcon(win ? "i-check" : "i-x", 13)}</span><span>${td.innerHTML}</span></span>`;
       });
-      card.appendChild(dl);
-      cardsWrap.appendChild(card);
+    });
+    // mobile: one card per criterion — our answer highlighted in green, the rest in red
+    const mob = $("[data-compare-mobile]", compare);
+    const legend = document.createElement("div");
+    legend.className = "cmp-legend";
+    legend.innerHTML = `<span class="lg-win">${svgIcon("i-check", 13)} ${heads[0]}</span><span class="lg-lose">${svgIcon("i-x", 13)} ${heads.slice(1).join(" · ")}</span>`;
+    mob.appendChild(legend);
+    rows.forEach((tr) => {
+      const cells = $$("td", tr).map((td) => $(".cell > span:last-child", td).innerHTML);
+      const card = document.createElement("div");
+      card.className = "cmp-card glass";
+      card.innerHTML =
+        `<h3>${$("th", tr).textContent}</h3>` +
+        `<div class="cmp-win"><span class="mark mark-yes mark-lg">${svgIcon("i-check", 15)}</span><span><span class="who">${heads[0]}</span><span class="ans">${cells[0]}</span></span></div>` +
+        `<ul class="cmp-lose" role="list">` +
+        cells.slice(1).map((c, i) => `<li><span class="mark mark-no">${svgIcon("i-x", 12)}</span><span class="who">${heads[i + 1]}</span><span>${c}</span></li>`).join("") +
+        `</ul>`;
+      mob.appendChild(card);
     });
   }
 
@@ -440,20 +447,18 @@ const CONFIG = {
     });
   });
 
-  /* ---------- 13. Stage line draws on scroll ---------- */
+  /* ---------- 13. Stage track fills on scroll ---------- */
   const stages = $("[data-stages]");
   if (stages) {
-    const line = $(".stages-line", stages);
-    if (reduceMotion) {
-      line.style.setProperty("--draw", "1");
-    } else {
+    const track = $(".stages-track", stages);
+    if (reduceMotion) track.style.setProperty("--draw", "1");
+    else {
       let raf = 0;
       const draw = () => {
         raf = 0;
         const r = stages.getBoundingClientRect();
-        const vh = window.innerHeight;
-        const progress = (vh * 0.75 - r.top) / (r.height || 1);
-        line.style.setProperty("--draw", Math.max(0, Math.min(1, progress)).toFixed(3));
+        const progress = (window.innerHeight * 0.75 - r.top) / (r.height || 1);
+        track.style.setProperty("--draw", Math.max(0, Math.min(1, progress)).toFixed(3));
       };
       window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(draw); }, { passive: true });
       window.addEventListener("resize", draw);
@@ -461,17 +466,47 @@ const CONFIG = {
     }
   }
 
-  /* ---------- 14. Desktop-only: card spotlight + hero parallax ---------- */
-  if (finePointer) {
-    document.documentElement.classList.add("has-spotlight");
-    document.addEventListener("pointermove", (e) => {
-      const card = e.target.closest && e.target.closest(".card");
-      if (!card) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      card.style.setProperty("--my", `${e.clientY - r.top}px`);
-    }, { passive: true });
+  /* ---------- 14. Skills marquee: clone once for a seamless loop ---------- */
+  const skills = $("[data-skills]");
+  if (skills) {
+    Array.from(skills.children).forEach((li) => {
+      const c = li.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      skills.appendChild(c);
+    });
   }
+
+  /* ---------- 15. Testimonials carousel: auto-advances right → left, arrows, swipe ---------- */
+  const car = $("[data-carousel]");
+  if (car) {
+    const track = $("[data-car-track]", car);
+    const cards = Array.from(track.children);
+    const stepSize = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth);
+    const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+    const next = () => (atEnd() ? track.scrollTo({ left: 0 }) : track.scrollBy({ left: stepSize() }));
+    const prev = () => (track.scrollLeft <= 8 ? track.scrollTo({ left: track.scrollWidth }) : track.scrollBy({ left: -stepSize() }));
+    $("[data-car-next]", car).addEventListener("click", () => { next(); restart(); });
+    $("[data-car-prev]", car).addEventListener("click", () => { prev(); restart(); });
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { next(); e.preventDefault(); restart(); }
+      if (e.key === "ArrowRight") { prev(); e.preventDefault(); restart(); }
+    });
+    let timer = null;
+    let paused = false;
+    const restart = () => {
+      clearInterval(timer);
+      if (reduceMotion) return;
+      timer = setInterval(() => { if (!paused && !document.hidden) next(); }, 4200);
+    };
+    ["pointerenter", "focusin", "touchstart"].forEach((ev) => car.addEventListener(ev, () => (paused = true), { passive: true }));
+    ["pointerleave", "focusout"].forEach((ev) => car.addEventListener(ev, () => (paused = false)));
+    car.addEventListener("touchend", () => setTimeout(() => (paused = false), 3000), { passive: true });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => (e.isIntersecting ? restart() : clearInterval(timer)), { threshold: 0.3 }).observe(car);
+    } else restart();
+  }
+
+  /* ---------- 16. Desktop-only hero parallax ---------- */
   const parallax = $("[data-parallax]");
   if (parallax && finePointer && !reduceMotion && window.matchMedia("(min-width: 960px)").matches) {
     let raf = 0;
@@ -482,16 +517,5 @@ const CONFIG = {
       parallax.style.transform = `scale(${1 - p * 0.03})`;
     };
     window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(onScroll); }, { passive: true });
-  }
-
-  /* ---------- 15. Logo marquee: clone once for a seamless loop ---------- */
-  const track = $(".marquee-track");
-  if (track) {
-    Array.from(track.children).forEach((li) => {
-      const clone = li.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      $("img", clone).alt = "";
-      track.appendChild(clone);
-    });
   }
 })();
