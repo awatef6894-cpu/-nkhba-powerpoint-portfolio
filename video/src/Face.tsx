@@ -18,10 +18,33 @@ const zoomAt = (f: number) => {
   return 1;
 };
 
-// مكان الوجه — صورة الكوتش. في نسخة MP4 مع تسجيلك يحلّ الفيديو مكانها (faceVideo)
+// خلفية مكان الوجه — صورة اللابتوب من شريحة «OUR EXPERIENCE»، مغسولة بالعاجي.
+// الصورة طولية: نسخة كاملة الارتفاع يسار الكادر تذوب في نسخة ضبابية ممتدة خلفها.
 const Placeholder: React.FC = () => (
-  <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 40%, #2b6b5b 0%, ${C.greenDeep} 55%, ${C.videoDark} 100%)` }}>
-    <Img src={img("img/coach.webp")} style={{ position: "absolute", left: "50%", bottom: 0, height: "100%", transform: "translateX(-50%)", opacity: 0.95 }} />
+  <AbsoluteFill style={{ background: C.bgIvory, overflow: "hidden" }}>
+    <Img src={img("img/face-bg.jpg")} style={{ position: "absolute", inset: -80, width: "calc(100% + 160px)", height: "calc(100% + 160px)", objectFit: "cover", filter: "blur(40px) saturate(0.9)" }} />
+    <Img
+      src={img("img/face-bg.jpg")}
+      style={{
+        position: "absolute",
+        left: 0,
+        top: 0,
+        height: "100%",
+        WebkitMaskImage: "linear-gradient(to right, #000 62%, transparent 100%)",
+        maskImage: "linear-gradient(to right, #000 62%, transparent 100%)",
+      }}
+    />
+    {/* شفافية الخلفية: غسلة عاجية خفيفة مثل الشريحة */}
+    <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(248,243,236,0.28) 0%, rgba(248,243,236,0.5) 55%, rgba(248,243,236,0.7) 100%)" }} />
+    <div style={{ position: "absolute", width: 1300, height: 1300, top: -600, right: -560, borderRadius: "50%", background: "radial-gradient(circle, rgba(74,146,127,0.22) 0%, rgba(74,146,127,0) 65%)" }} />
+    <div style={{ position: "absolute", width: 1200, height: 1200, bottom: -620, left: -520, borderRadius: "50%", background: "radial-gradient(circle, rgba(246,134,22,0.14) 0%, rgba(246,134,22,0) 65%)" }} />
+    <AbsoluteFill
+      style={{
+        opacity: 0.045,
+        backgroundImage: `linear-gradient(${C.greenDeep} 2px, transparent 2px), linear-gradient(90deg, ${C.greenDeep} 2px, transparent 2px)`,
+        backgroundSize: "96px 96px",
+      }}
+    />
   </AbsoluteFill>
 );
 
