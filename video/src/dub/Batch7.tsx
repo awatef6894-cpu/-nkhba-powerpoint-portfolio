@@ -636,26 +636,90 @@ const FeaturesSection: React.FC = () => {
   );
 };
 
-/* ══════════════ ٣٧.٥–٣٩.٥ مجانية (Ghosting) ══════════════ */
+/* ══════════════ ٣٧.٥–٣٩.٥ «استشارة مجانية» — رسالة واتساب + أيقونة محادثة عائمة ══════════════ */
+const WA_GREEN = "#25D366";
+const FREE_MSG = "استشارة مجانية";
+const TYPE_AT = 37.95;
+const TYPE_DUR = 0.85;
+
+const WhatsAppIcon: React.FC<{ size: number }> = ({ size }) => (
+  <div style={{ width: size, height: size, borderRadius: size * 0.24, background: "linear-gradient(180deg, #5BF675 0%, #25CF43 100%)", display: "grid", placeItems: "center", boxShadow: "0 2px 6px rgba(0,0,0,0.12)" }}>
+    <svg width={size * 0.72} height={size * 0.72} viewBox="0 0 32 32">
+      {/* فقاعة بذيل + سماعة */}
+      <path d="M16 3.5C9.1 3.5 3.6 9 3.6 15.8c0 2.3.6 4.4 1.7 6.3L3.5 28.5l6.6-1.7c1.8 1 3.8 1.5 5.9 1.5 6.9 0 12.4-5.5 12.4-12.4S22.9 3.5 16 3.5Z" fill="none" stroke="#fff" strokeWidth={2.4} strokeLinejoin="round" />
+      <path d="M11.6 9.6c.3 0 .6 0 .8.6l1.1 2.6c.1.3 0 .6-.1.8l-.8 1c-.2.2-.2.4 0 .7.7 1.2 1.6 2.2 2.7 3 .5.4 1.1.7 1.7 1 .3.1.5.1.7-.1l1-1.2c.2-.3.5-.3.8-.2l2.5 1.2c.3.1.5.3.5.6 0 .9-.4 1.8-1.1 2.3-.8.6-1.9.8-2.9.5-2.3-.7-4.3-2-5.9-3.8-1.2-1.3-2.1-2.8-2.6-4.4-.3-1-.1-2.2.6-3 .3-.4.8-.6 1.3-.6Z" fill="#fff" />
+    </svg>
+  </div>
+);
+
+// أيقونة المحادثة العائمة: مربع أخضر خلفي مائل + مربع زجاجي أمامي فيه فقاعة بثلاث نقاط تكتب
+const FloatingChat: React.FC<{ at: number }> = ({ at }) => {
+  const frame = useCurrentFrame();
+  const t = frame / FPS;
+  const p = prog(frame, at, 0.6);
+  const pop = interpolate(frame, [f(at), f(at + 0.35), f(at + 0.6)], [0.6, 1.08, 1], { ...CL, easing: Easing.out(Easing.cubic) });
+  const bob = Math.sin(t * 2.2) * 10;
+  const typing = t >= at + 0.2 && t <= TYPE_AT + TYPE_DUR + 0.15;
+  const SZ = 210;
+  return (
+    <div style={{ position: "relative", width: SZ + 70, height: SZ + 40, opacity: p, transform: `translateY(${(1 - p) * 60 + bob}px) scale(${pop}) rotate(${mix(-10, -4, p)}deg)` }}>
+      <div style={abs({ left: 70, top: 0, width: SZ, height: SZ, borderRadius: SZ * 0.26, background: `linear-gradient(160deg, #6BEA8C 0%, ${WA_GREEN} 55%, #128C4A 100%)`, transform: "rotate(8deg)", boxShadow: "0 30px 60px -24px rgba(18,140,74,0.55)" })} />
+      <div
+        style={abs({
+          left: 0,
+          top: 40,
+          width: SZ,
+          height: SZ,
+          borderRadius: SZ * 0.26,
+          background: "linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.78) 45%, rgba(110,234,150,0.55) 100%)",
+          border: "2px solid rgba(255,255,255,0.95)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          boxShadow: "0 36px 70px -28px rgba(17,73,60,0.45), inset 0 2px 0 #fff",
+          display: "grid",
+          placeItems: "center",
+        })}
+      >
+        <svg width={SZ * 0.62} height={SZ * 0.52} viewBox="0 0 120 100">
+          <path d="M60 8C30 8 8 25 8 47c0 11 6 21 16 28l-4 16 18-9c7 2 14 3 22 3 30 0 52-17 52-38S90 8 60 8Z" fill="#fff" style={{ filter: "drop-shadow(0 6px 10px rgba(18,140,74,0.25))" }} />
+          {[0, 1, 2].map((i) => {
+            const k = typing ? 0.5 + 0.5 * Math.sin(t * 9 - i * 0.9) : 0.5;
+            return <circle key={i} cx={38 + i * 22} cy={47 - (typing ? k * 6 : 0)} r={8} fill={WA_GREEN} opacity={0.45 + 0.55 * k} />;
+          })}
+        </svg>
+      </div>
+    </div>
+  );
+};
+
 const FreeSection: React.FC = () => {
   const frame = useCurrentFrame();
-  const p = prog(frame, 37.5, 0.5);
-  const GHOSTS = [
-    { x: 90, y: -40, s: 1.18 },
-    { x: -110, y: 30, s: 1.28 },
-    { x: 60, y: 55, s: 0.86 },
-    { x: -70, y: -60, s: 0.8 },
-  ];
-  const txt: React.CSSProperties = { fontFamily: FONT, fontWeight: 700, fontSize: 280, lineHeight: 1.4, color: D.orange, whiteSpace: "nowrap" };
+  const t = frame / FPS;
+  const typed = Math.round(FREE_MSG.length * prog(frame, TYPE_AT, TYPE_DUR));
+  const caret = t < TYPE_AT + TYPE_DUR + 0.3 && Math.floor(t * 3) % 2 === 0;
   return (
-    <Exit at={39.25} style={abs({ inset: 0, display: "flex", alignItems: "center", justifyContent: "center" })}>
-      <div style={{ position: "relative" }}>
-        {GHOSTS.map((g, i) => (
-          <span key={i} style={abs({ inset: 0, ...txt, opacity: 0.28 * (1 - p), transform: `translate(${g.x * (1 - p)}px, ${g.y * (1 - p)}px) scale(${mix(g.s, 1, p)})` })}>
-            مجانية
-          </span>
-        ))}
-        <span style={{ ...txt, display: "block", opacity: p, filter: `blur(${6 * (1 - p)}px)` }}>مجانية</span>
+    <Exit at={39.25} style={abs({ inset: 0 })}>
+      {/* كرت إشعار واتساب في منتصف الصفحة */}
+      <div style={abs({ top: 470, ...centerX })}>
+        <CardIn at={37.5}>
+          <div style={{ width: 1240, borderRadius: 42, background: "#E6E6E6", boxShadow: "0 30px 50px -22px rgba(0,0,0,0.28)", padding: "30px 40px 40px" }}>
+            <div dir="ltr" style={{ display: "flex", alignItems: "center", gap: 22, fontFamily: FONT, fontSize: 32, color: "#7a7a7a", letterSpacing: 1 }}>
+              <WhatsAppIcon size={66} />
+              <span style={{ flex: 1 }}>WHATSAPP</span>
+              <span style={{ letterSpacing: 0 }}>now</span>
+            </div>
+            <div style={{ direction: "rtl", textAlign: "center", marginTop: 14 }}>
+              <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 104, lineHeight: 1.35, color: "#1f2a26", whiteSpace: "nowrap" }}>
+                {FREE_MSG.slice(0, typed)}
+                <span style={{ display: "inline-block", width: 6, height: 96, marginRight: 8, verticalAlign: "middle", background: WA_GREEN, borderRadius: 3, opacity: caret ? 1 : 0 }} />
+              </span>
+            </div>
+          </div>
+        </CardIn>
+      </div>
+      {/* الأيقونة العائمة بارزة فوق الكرت */}
+      <div style={abs({ top: 205, ...centerX })}>
+        <FloatingChat at={37.6} />
       </div>
     </Exit>
   );
@@ -774,7 +838,8 @@ const CUES: Cue[] = [
   ["sparkle", 29.1],
   ["impact", 31.0],
   ...FEATURES.map((it): Cue => ["check", it.at]),
-  ["popBright", 37.55],
+  ["softPop", 37.55],
+  ["popBright", 38.0],
   ["mouse", CLICK],
   ["whoosh", 45.0],
 ];

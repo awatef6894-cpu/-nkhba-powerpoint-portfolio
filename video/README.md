@@ -40,5 +40,5 @@ npx remotion render Montage out/montage.mp4 --props='{"mode":"full","faceVideo":
 
 ```bash
 npm run stills:batch7   # صور مراجعة في out/dub
-npm run render:batch7   # out/batch7-dub.mp4
+npm run render:batch7   # out/batch7-dub-4k.mp4 (3840×2160، إطارات PNG بدون ضغط)
 ```

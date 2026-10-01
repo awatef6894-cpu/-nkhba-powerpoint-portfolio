@@ -9,7 +9,7 @@
     "render:audio": "remotion render Montage out/sfx-track.wav --codec=wav",
     "render:mp4": "remotion render Montage out/montage.mp4 --codec=h264",
     "render:overlay": "remotion render MontageOverlay out/montage-overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le",
-    "render:batch7": "remotion render Batch7 out/batch7-dub.mp4 --codec=h264 --crf=18",
+    "render:batch7": "remotion render Batch7 out/batch7-dub-4k.mp4 --codec=h264 --scale=2 --image-format=png --crf=14 --x264-preset=slow --pixel-format=yuv420p --audio-bitrate=320k",
     "stills:batch7": "node scripts/dub-stills.mjs"
   },
   "dependencies": {
