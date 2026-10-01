@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Sequence } from "remotion";
 import { Face } from "./Face";
+import { Sfx } from "./Sfx";
 import { SCENES, SceneId } from "./timeline";
 import {
   BatchScene,
@@ -50,5 +51,6 @@ export const Main: React.FC<MainProps> = ({ mode, faceVideo }) => (
         </Sequence>
       );
     })}
+    <Sfx />
   </AbsoluteFill>
 );

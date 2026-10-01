@@ -6,7 +6,7 @@
     "studio": "remotion studio",
     "stills": "node scripts/stills.mjs",
     "storyboard": "node scripts/stills.mjs && for f in out/stills/*.png; do ffmpeg -v error -y -i $f -vf scale=1280:-1 -quality 82 storyboard/shots/$(basename ${f%.png}).webp; done && node scripts/storyboard.mjs",
-    "sfx": "node scripts/make-record-scratch.mjs",
+    "render:audio": "remotion render Montage out/sfx-track.wav --codec=wav",
     "render:mp4": "remotion render Montage out/montage.mp4 --codec=h264",
     "render:overlay": "remotion render MontageOverlay out/montage-overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le"
   },
