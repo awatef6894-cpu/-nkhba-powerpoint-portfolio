@@ -13,6 +13,11 @@ const CONFIG = {
   currencyCode: "SAR",
 
   batchNumber: 8,
+
+  // Program facts shown in the pricing card
+  units: 14,
+  lectures: 29,
+
   batch: "الدفعة 8",
   seats: 400,
 
@@ -75,6 +80,8 @@ const CONFIG = {
     currency: CONFIG.currency,
     batch: CONFIG.batch,
     batchNumber: String(CONFIG.batchNumber),
+    units: String(CONFIG.units),
+    lectures: String(CONFIG.lectures),
     seats: String(CONFIG.seats),
     deadlineLabel: CONFIG.deadlineLabel,
     trainees: fmt(CONFIG.trainees),
