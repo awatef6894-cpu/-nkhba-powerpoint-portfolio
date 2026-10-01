@@ -422,6 +422,7 @@ ol.stages { position: relative; display: grid; gap: 14px; margin-top: 34px; padd
 .stat { display: flex; flex-direction: column-reverse; justify-content: center; gap: 2px; padding: 16px 10px; text-align: center; }
 .stat dd { font-size: 30px; font-weight: 700; line-height: 1.2; direction: ltr; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
 .stat dt { font-size: 13.5px; }
+.stat-wide { grid-column: 1 / -1; }
 
 /* ---------- testimonials ---------- */
 .stars { display: flex; gap: 2px; }
@@ -579,7 +580,8 @@ ol.stages { position: relative; display: grid; gap: 14px; margin-top: 34px; padd
   .pain { grid-column: span 2; }
   .pain:nth-child(4) { grid-column: span 3; }
   .pain-wide { grid-column: span 3; flex-direction: column; text-align: center; padding: 22px 12px 18px; }
-  .stats { grid-template-columns: repeat(4, 1fr); }
+  .stats { grid-template-columns: repeat(5, 1fr); }
+  .stat-wide { grid-column: auto; }
   .t-track > li { flex-basis: 46%; }
   .fit-grid { grid-template-columns: 1.15fr 0.85fr; align-items: start; }
   .clients-grid { grid-template-columns: repeat(6, 1fr); }

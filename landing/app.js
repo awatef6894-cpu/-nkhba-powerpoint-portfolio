@@ -12,25 +12,26 @@ const CONFIG = {
   currency: "ريال",
   currencyCode: "SAR",
 
-  batchNumber: 8,
+  batchNumber: 7,
 
   // Program facts shown in the pricing card
   units: 14,
   lectures: 29,
 
-  batch: "الدفعة 8",
+  batch: "الدفعة 7",
+  pastBatches: 6,
   seats: 400,
 
   // Real registration deadline (Riyadh time). The countdown counts down to this
   // exact moment and switches to "closed" after it — it never resets.
   deadlineLabel: "25 أكتوبر",
   deadlineISO: "2026-10-25T23:59:59+03:00",
-  closedLabel: "انتهى التسجيل في الدفعة 8",
+  closedLabel: "انتهى التسجيل في الدفعة 7",
 
   trainees: 5000,
   rating: 4.95,
   designs: 829,
-  years: 4,
+  years: 7,
 
   // Switch to true once the trainee community is live — shows it in the pricing list.
   communityReady: false,
@@ -88,12 +89,13 @@ const CONFIG = {
     rating: fmt(CONFIG.rating, 2),
     designs: fmt(CONFIG.designs),
     years: String(CONFIG.years),
+    pastBatches: String(CONFIG.pastBatches),
   };
   $$("[data-cfg]").forEach((el) => {
     const key = el.dataset.cfg;
     if (key in cfgText) el.textContent = cfgText[key];
   });
-  const countTargets = { designs: CONFIG.designs, trainees: CONFIG.trainees, years: CONFIG.years, rating: CONFIG.rating };
+  const countTargets = { designs: CONFIG.designs, trainees: CONFIG.trainees, years: CONFIG.years, pastBatches: CONFIG.pastBatches, rating: CONFIG.rating };
   $$("[data-count][data-cfg]").forEach((el) => {
     if (el.dataset.cfg in countTargets) el.dataset.count = countTargets[el.dataset.cfg];
   });
