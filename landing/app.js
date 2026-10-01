@@ -31,7 +31,6 @@ const CONFIG = {
   trainees: 5000,
   rating: 4.95,
   designs: 829,
-  years: 7,
 
   // Switch to true once the trainee community is live — shows it in the pricing list.
   communityReady: false,
@@ -88,14 +87,13 @@ const CONFIG = {
     trainees: fmt(CONFIG.trainees),
     rating: fmt(CONFIG.rating, 2),
     designs: fmt(CONFIG.designs),
-    years: String(CONFIG.years),
     pastBatches: String(CONFIG.pastBatches),
   };
   $$("[data-cfg]").forEach((el) => {
     const key = el.dataset.cfg;
     if (key in cfgText) el.textContent = cfgText[key];
   });
-  const countTargets = { designs: CONFIG.designs, trainees: CONFIG.trainees, years: CONFIG.years, pastBatches: CONFIG.pastBatches, rating: CONFIG.rating };
+  const countTargets = { designs: CONFIG.designs, trainees: CONFIG.trainees, pastBatches: CONFIG.pastBatches, rating: CONFIG.rating };
   $$("[data-count][data-cfg]").forEach((el) => {
     if (el.dataset.cfg in countTargets) el.dataset.count = countTargets[el.dataset.cfg];
   });
