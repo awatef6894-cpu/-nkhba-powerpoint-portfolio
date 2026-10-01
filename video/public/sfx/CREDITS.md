@@ -20,4 +20,3 @@
 | `pop-bright.mp3` | ٣٢–٣٨ («مجانية») | [Freesound #669918](https://freesound.org/s/669918/) · el_boss · CC0 | The Best Bubble Pop Sound For Game and UI |
 | `mouse-click.mp3` | ٣٨–٤٣ | [Freesound #683099](https://freesound.org/s/683099/) · florianreichelt · CC0 | computer mouse click |
 
-خلفية مكان الوجه (`public/brand/img/face-bg.jpg`) صورة مؤقتة من Unsplash (`photo-1484807352052-23338990c6c6`) بترخيص Unsplash. استبدلها بصورتك بنفس الاسم.

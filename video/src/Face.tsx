@@ -18,24 +18,10 @@ const zoomAt = (f: number) => {
   return 1;
 };
 
-// خلفية مكان الوجه — صورة لابتوب مغسولة بالعاجي مثل الشريحة المرجعية.
-// لاستبدالها: ضع صورتك باسم public/brand/img/face-bg.jpg
+// مكان الوجه — صورة الكوتش. في نسخة MP4 مع تسجيلك يحلّ الفيديو مكانها (faceVideo)
 const Placeholder: React.FC = () => (
-  <AbsoluteFill style={{ background: C.bgIvory, overflow: "hidden" }}>
-    <Img src={img("img/face-bg.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover", filter: "sepia(0.3) brightness(1.6) contrast(0.75)" }} />
-    {/* غسلة عاجية — أكثف في الأطراف ليبقى الوسط واضحًا */}
-    <AbsoluteFill style={{ background: "radial-gradient(ellipse 75% 75% at 50% 55%, rgba(248,243,236,0.5) 0%, rgba(248,243,236,0.7) 70%, rgba(248,243,236,0.85) 100%)" }} />
-    <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 35%)" }} />
-    {/* لمسة الهوية: أخضر يمين، برتقالي يسار */}
-    <div style={{ position: "absolute", width: 1300, height: 1300, top: -600, right: -560, borderRadius: "50%", background: "radial-gradient(circle, rgba(74,146,127,0.22) 0%, rgba(74,146,127,0) 65%)" }} />
-    <div style={{ position: "absolute", width: 1200, height: 1200, bottom: -620, left: -520, borderRadius: "50%", background: "radial-gradient(circle, rgba(246,134,22,0.16) 0%, rgba(246,134,22,0) 65%)" }} />
-    <AbsoluteFill
-      style={{
-        opacity: 0.05,
-        backgroundImage: `linear-gradient(${C.greenDeep} 2px, transparent 2px), linear-gradient(90deg, ${C.greenDeep} 2px, transparent 2px)`,
-        backgroundSize: "96px 96px",
-      }}
-    />
+  <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 40%, #2b6b5b 0%, ${C.greenDeep} 55%, ${C.videoDark} 100%)` }}>
+    <Img src={img("img/coach.webp")} style={{ position: "absolute", left: "50%", bottom: 0, height: "100%", transform: "translateX(-50%)", opacity: 0.95 }} />
   </AbsoluteFill>
 );
 
