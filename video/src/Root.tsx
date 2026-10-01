@@ -1,28 +1,14 @@
 import React from "react";
 import { Composition } from "remotion";
-import { QuickPause, QuickPauseProps } from "./QuickPause";
+import { Main, MainProps } from "./Main";
 import { VIDEO } from "./brand";
-
-// ٠–٢ ثانية: «وقفة سريعة قبل ما نكمل.»
-const PAUSE_DURATION = 2 * VIDEO.fps;
+import { TOTAL_SECONDS } from "./timeline";
 
 export const RemotionRoot: React.FC = () => (
   <>
-    {/* فوق الوجه — شفاف (ProRes 4444) */}
-    <Composition
-      id="QuickPauseOverlay"
-      component={QuickPause}
-      durationInFrames={PAUSE_DURATION}
-      {...VIDEO}
-      defaultProps={{ transparent: true, withSound: true } satisfies QuickPauseProps}
-    />
-    {/* نسخة MP4 — ضع فيديوك في public/ ومرّر backgroundVideo لتجميده، وإلا خلفية الهوية */}
-    <Composition
-      id="QuickPause"
-      component={QuickPause}
-      durationInFrames={PAUSE_DURATION}
-      {...VIDEO}
-      defaultProps={{ transparent: false, withSound: true } satisfies QuickPauseProps}
-    />
+    {/* MP4 كامل — مع تسجيل الوجه أو صورة مكانه */}
+    <Composition id="Montage" component={Main} durationInFrames={TOTAL_SECONDS * VIDEO.fps} {...VIDEO} defaultProps={{ mode: "full" } satisfies MainProps} />
+    {/* طبقة شفافة فوق الوجه — ProRes 4444 */}
+    <Composition id="MontageOverlay" component={Main} durationInFrames={TOTAL_SECONDS * VIDEO.fps} {...VIDEO} defaultProps={{ mode: "overlay" } satisfies MainProps} />
   </>
 );

@@ -1,38 +1,33 @@
-# لقطات الفيديو — Remotion
+# مونتاج إعلان الدفعة 8 — Remotion
 
-مشروع Remotion مستقل لبناء لقطات المونتاج بهوية «نخبة البوربوينت»
-(الألوان والخط El Messiri مأخوذة من صفحة الهبوط: `tailwind.config.ts` و `app/layout.tsx`).
+كل اللقطات مبنية بهوية صفحة الهبوط [course.powerpoint-ksa.store](https://course.powerpoint-ksa.store/):
+خط Janna LT، والتدرج من الأخضر إلى البرتقالي، والبطاقات الزجاجية، والأزرار، والخلفية العاجية بالشبكة.
+الشعارات وصورة الكوتش والشهادة وآراء المتدربين مأخوذة من الصفحة نفسها (`public/brand/`).
 
-## اللقطات
+## الملفات
 
-| الوقت | التكوين (Composition) | المخرج |
-|---|---|---|
-| ٠–٢ ث | `QuickPauseOverlay`: «وقفة سريعة» بخلفية شفافة فوق الوجه | `out/01-quick-pause-overlay.mov` (ProRes 4444 + Alpha) |
-| ٠–٢ ث | `QuickPause`: نفس اللقطة بصيغة MP4 | `out/01-quick-pause.mp4` (H.264) |
+| الملف | الوظيفة |
+|---|---|
+| `src/timeline.ts` | الجدول الإخراجي (٤٨ ث، ١٢ لقطة) |
+| `src/scenes.tsx` | اللقطات |
+| `src/ui.tsx` · `src/brand.ts` | نظام التصميم المنقول من `styles.css` في صفحة الهبوط |
+| `src/Face.tsx` | طبقة الوجه: Freeze وPunch-in وJump cut وWhip |
+| `storyboard/index.html` | صفحة «الجدول الإخراجي» لمراجعة كل لقطة |
 
-الحركة: ومضة تجميد بيضاء، ثم صوت «Record scratch»، ثم يقفز نص «وقفة سريعة» بالبرتقالي `#E67D15`
-في المنتصف العلوي مع اهتزاز يخفت تدريجيًا، ثم أيقونة ⏸ وخط سفلي يمتد وزوايا إطار، ثم خروج ناعم.
-
-## التشغيل
+## الأوامر
 
 ```bash
-cd video
 npm install
-npm run studio      # معاينة وتعديل
-npm run render      # يخرج MOV الشفاف و MP4 في out/
+npm run studio          # معاينة حيّة
+npm run storyboard      # صور PNG لكل لقطة + صفحة المراجعة
+npm run render:mp4      # MP4 كامل (out/montage.mp4)
+npm run render:overlay  # طبقة شفافة ProRes 4444 فوق تسجيل الوجه
 ```
 
-## تجميد لقطتك الحقيقية (نسخة MP4)
-
-ضع ملف الفيديو في `video/public/` ثم:
+لتركيب تسجيلك داخل الـ MP4، ضعه في `public/face.mp4` ثم:
 
 ```bash
-npx remotion render QuickPause out/01-quick-pause.mp4 \
-  --props='{"transparent":false,"backgroundVideo":"talking-head.mp4","freezeAtFrame":0}'
+npx remotion render Montage out/montage.mp4 --props='{"mode":"full","faceVideo":"face.mp4"}'
 ```
 
-## الصوت
-
-`public/sfx/record-scratch.wav` مؤثر مولَّد بـ `npm run sfx`. استبدله بملف «Record scratch» تفضّله بنفس الاسم.
-
-> ملف MOV حجمه نحو ١٧٠ ميغابايت، ولذلك لا يُرفع إلى git (GitHub يرفض الملفات فوق ١٠٠ ميغابايت). أعد توليده بـ `npm run render:pause:mov`.
+> الخط Janna LT مرخّص من Linotype، وقد زوّد به العميل لصفحة الهبوط.

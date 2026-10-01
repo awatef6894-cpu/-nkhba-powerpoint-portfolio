@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio",
+    "stills": "node scripts/stills.mjs",
+    "storyboard": "node scripts/stills.mjs && for f in out/stills/*.png; do ffmpeg -v error -y -i $f -vf scale=1280:-1 -quality 82 storyboard/shots/$(basename ${f%.png}).webp; done && node scripts/storyboard.mjs",
     "sfx": "node scripts/make-record-scratch.mjs",
-    "render:pause:mov": "remotion render QuickPauseOverlay out/01-quick-pause-overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le",
-    "render:pause:mp4": "remotion render QuickPause out/01-quick-pause.mp4 --codec=h264",
-    "render": "npm run render:pause:mov && npm run render:pause:mp4"
+    "render:mp4": "remotion render Montage out/montage.mp4 --codec=h264",
+    "render:overlay": "remotion render MontageOverlay out/montage-overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le"
   },
   "dependencies": {
-    "@fontsource/el-messiri": "^5.2.0",
+    "@fontsource/amiri": "^5.3.0",
+    "@remotion/bundler": "^4.0.532",
     "@remotion/cli": "4.0.532",
+    "@remotion/renderer": "^4.0.532",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "remotion": "4.0.532"
