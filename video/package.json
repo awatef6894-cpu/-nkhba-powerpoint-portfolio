@@ -1,0 +1,23 @@
+{
+  "name": "nkhba-video-overlays",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "sfx": "node scripts/make-record-scratch.mjs",
+    "render:pause:mov": "remotion render QuickPauseOverlay out/01-quick-pause-overlay.mov --codec=prores --prores-profile=4444 --image-format=png --pixel-format=yuva444p10le",
+    "render:pause:mp4": "remotion render QuickPause out/01-quick-pause.mp4 --codec=h264",
+    "render": "npm run render:pause:mov && npm run render:pause:mp4"
+  },
+  "dependencies": {
+    "@fontsource/el-messiri": "^5.2.0",
+    "@remotion/cli": "4.0.532",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.532"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "^5"
+  }
+}
