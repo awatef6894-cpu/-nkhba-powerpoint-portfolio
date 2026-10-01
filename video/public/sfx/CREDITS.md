@@ -21,4 +21,4 @@
 | `mouse-click.mp3` | ٣٨–٤٣ | [Freesound #683099](https://freesound.org/s/683099/) · florianreichelt · CC0 | computer mouse click |
 
 
-خلفية مكان الوجه (`public/brand/img/face-bg.jpg`) مقتطعة من شريحة «OUR EXPERIENCE» التي زوّدت بها المستخدمة.
+خلفية مكان الوجه (`public/brand/img/face-bg.jpg`) لقطة واجهة البوربوينت التي زوّدت بها المستخدمة.
