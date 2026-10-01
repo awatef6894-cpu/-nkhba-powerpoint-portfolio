@@ -160,7 +160,7 @@ export const CounterScene: React.FC = () => {
 };
 
 /* ───────────── ١٢–١٨ تغيير الخط بخطوة وحدة ───────────── */
-const SlideMock: React.FC<{ font: string; scale?: number; variant?: number }> = ({ font, scale = 1, variant = 0 }) => {
+export const SlideMock: React.FC<{ font: string; scale?: number; variant?: number }> = ({ font, scale = 1, variant = 0 }) => {
   const titles = ["ملخص الأداء الربعي", "مؤشرات الإنجاز", "خطة المرحلة القادمة", "توزيع الميزانية"];
   const W = 1040 * scale;
   return (

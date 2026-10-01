@@ -31,3 +31,14 @@ npx remotion render Montage out/montage.mp4 --props='{"mode":"full","faceVideo":
 ```
 
 > الخط Janna LT مرخّص من Linotype، وقد زوّد به العميل لصفحة الهبوط.
+
+## الدفعة 7 بأسلوب Dub (`Batch7`)
+
+إعادة إنتاج حسب «بريف إعادة إنتاج فيديو الدفعة 7 بأسلوب Dub» (`src/dub/`):
+خلفية واحدة ثابتة مبنية بالكود، وبناء الكلمات كلمة كلمة، ودخول الكروت وخروج العناصر بنفس القيم،
+ودفع كاميرا 100→103٪ لكل قسم، وجسور Morph بين الأقسام، والدائرة الدوارة تفتح الفيديو وتقفله.
+
+```bash
+npm run stills:batch7   # صور مراجعة في out/dub
+npm run render:batch7   # out/batch7-dub.mp4
+```
