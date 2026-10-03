@@ -29,5 +29,7 @@
         }
       ]
     }
-  ]
+  ],
+  "buildCommand": "node scripts/sync-pricing.mjs",
+  "outputDirectory": "."
 }

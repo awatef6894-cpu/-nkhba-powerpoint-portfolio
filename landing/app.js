@@ -7,10 +7,11 @@
 const CONFIG = {
   checkoutUrl: "https://1powerpoint.acadimiat.com/direct-checkout/1/4837",
 
-  priceNow: 750,
-  priceWas: 1500,
-  currency: "ريال",
-  currencyCode: "SAR",
+  // Price comes from config/pricing.js — do not type it here.
+  priceNow: PRICING.PRICE_SAR,
+  priceWas: PRICING.PRICE_WAS_SAR,
+  currency: PRICING.currencyLabel,
+  currencyCode: PRICING.currencyCode,
 
   batchNumber: 7,
 
