@@ -9,22 +9,19 @@ const CONFIG = {
 
   // Price comes from config/pricing.js — do not type it here.
   priceNow: PRICING.PRICE_SAR,
-  priceWas: PRICING.PRICE_WAS_SAR,
   currency: PRICING.currencyLabel,
   currencyCode: PRICING.currencyCode,
 
   batchNumber: 7,
 
-  // Program facts shown in the pricing card
+  // Program facts (hero line and pricing card)
   units: 14,
-  lectures: 29,
 
   batch: "الدفعة 7",
   pastBatches: 6,
-  seats: 400,
 
-  // Real registration deadline (Riyadh time). The countdown counts down to this
-  // exact moment and switches to "closed" after it — it never resets.
+  // Registration deadline (Riyadh time). No countdown is shown; after this moment
+  // the "open until" line switches to closedLabel.
   deadlineLabel: "25 أكتوبر",
   deadlineISO: "2026-10-25T23:59:59+03:00",
   closedLabel: "انتهى التسجيل في الدفعة 7",
@@ -71,19 +68,14 @@ const CONFIG = {
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const fmt = (n, decimals = 0) =>
     Number(n).toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-  const svgIcon = (id, size = 14) =>
-    `<svg width="${size}" height="${size}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
   /* ---------- 1. Fill config values ---------- */
   const cfgText = {
     priceNow: String(CONFIG.priceNow),
-    priceWas: String(CONFIG.priceWas),
     currency: CONFIG.currency,
     batch: CONFIG.batch,
     batchNumber: String(CONFIG.batchNumber),
     units: String(CONFIG.units),
-    lectures: String(CONFIG.lectures),
-    seats: String(CONFIG.seats),
     deadlineLabel: CONFIG.deadlineLabel,
     trainees: fmt(CONFIG.trainees),
     rating: fmt(CONFIG.rating, 2),
@@ -244,36 +236,10 @@ const CONFIG = {
     $$("[data-count]").forEach((el) => cio.observe(el));
   }
 
-  /* ---------- 7. Countdown to the real deadline ---------- */
-  const deadline = new Date(CONFIG.deadlineISO).getTime();
-  const countdowns = $$("[data-countdown]");
-  const pad = (n) => String(n).padStart(2, "0");
-  let cdTimer = null;
-  const tick = () => {
-    const diff = deadline - Date.now();
-    if (diff <= 0) {
-      countdowns.forEach((c) => {
-        c.classList.add("is-closed");
-        const label = $(".countdown-label", c);
-        if (label) label.textContent = CONFIG.closedLabel;
-      });
-      $$("[data-deadline-line]").forEach((el) => (el.textContent = CONFIG.closedLabel));
-      clearInterval(cdTimer);
-      return;
-    }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    countdowns.forEach((c) => {
-      $("[data-cd=d]", c).textContent = String(d);
-      $("[data-cd=h]", c).textContent = pad(h);
-      $("[data-cd=m]", c).textContent = pad(m);
-      $("[data-cd=s]", c).textContent = pad(s);
-    });
-  };
-  tick();
-  cdTimer = setInterval(tick, 1000);
+  /* ---------- 7. Registration deadline (static line, no countdown) ---------- */
+  if (Date.now() > new Date(CONFIG.deadlineISO).getTime()) {
+    $$("[data-deadline-line]").forEach((el) => (el.textContent = CONFIG.closedLabel));
+  }
 
   /* ---------- 8. Video helpers (lazy sources, start offset) ---------- */
   const loadVideo = (video) => {
@@ -412,40 +378,7 @@ const CONFIG = {
     });
   }
 
-  /* ---------- 11. Comparison: icons in the table + a clear mobile layout ---------- */
-  const compare = $("[data-compare]");
-  if (compare) {
-    const table = $("table", compare);
-    const heads = $$("thead th", table).map((th) => th.textContent.trim());
-    const rows = $$("tbody tr", table);
-    // desktop table: ✓ in the winning column, ✕ in the others
-    rows.forEach((tr) => {
-      $$("td", tr).forEach((td) => {
-        const win = td.classList.contains("is-win");
-        td.innerHTML = `<span class="cell"><span class="mark ${win ? "mark-yes" : "mark-no"}">${svgIcon(win ? "i-check" : "i-x", 13)}</span><span>${td.innerHTML}</span></span>`;
-      });
-    });
-    // mobile: one card per criterion — our answer highlighted in green, the rest in red
-    const mob = $("[data-compare-mobile]", compare);
-    const legend = document.createElement("div");
-    legend.className = "cmp-legend";
-    legend.innerHTML = `<span class="lg-win">${svgIcon("i-check", 13)} ${heads[0]}</span><span class="lg-lose">${svgIcon("i-x", 13)} ${heads.slice(1).join(" · ")}</span>`;
-    mob.appendChild(legend);
-    rows.forEach((tr) => {
-      const cells = $$("td", tr).map((td) => $(".cell > span:last-child", td).innerHTML);
-      const card = document.createElement("div");
-      card.className = "cmp-card glass";
-      card.innerHTML =
-        `<h3>${$("th", tr).textContent}</h3>` +
-        `<div class="cmp-win"><span class="mark mark-yes mark-lg">${svgIcon("i-check", 15)}</span><span><span class="who">${heads[0]}</span><span class="ans">${cells[0]}</span></span></div>` +
-        `<ul class="cmp-lose" role="list">` +
-        cells.slice(1).map((c, i) => `<li><span class="mark mark-no">${svgIcon("i-x", 12)}</span><span class="who">${heads[i + 1]}</span><span>${c}</span></li>`).join("") +
-        `</ul>`;
-      mob.appendChild(card);
-    });
-  }
-
-  /* ---------- 12. FAQ accordion ---------- */
+  /* ---------- 11. FAQ accordion ---------- */
   $$("[data-faq] .faq-item").forEach((item) => {
     const btn = $("button", item);
     btn.addEventListener("click", () => {
@@ -455,66 +388,7 @@ const CONFIG = {
     });
   });
 
-  /* ---------- 13. Stage track fills on scroll ---------- */
-  const stages = $("[data-stages]");
-  if (stages) {
-    const track = $(".stages-track", stages);
-    if (reduceMotion) track.style.setProperty("--draw", "1");
-    else {
-      let raf = 0;
-      const draw = () => {
-        raf = 0;
-        const r = stages.getBoundingClientRect();
-        const progress = (window.innerHeight * 0.75 - r.top) / (r.height || 1);
-        track.style.setProperty("--draw", Math.max(0, Math.min(1, progress)).toFixed(3));
-      };
-      window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(draw); }, { passive: true });
-      window.addEventListener("resize", draw);
-      draw();
-    }
-  }
-
-  /* ---------- 14. Skills marquee: clone once for a seamless loop ---------- */
-  const skills = $("[data-skills]");
-  if (skills) {
-    Array.from(skills.children).forEach((li) => {
-      const c = li.cloneNode(true);
-      c.setAttribute("aria-hidden", "true");
-      skills.appendChild(c);
-    });
-  }
-
-  /* ---------- 15. Testimonials carousel: auto-advances right → left, arrows, swipe ---------- */
-  const car = $("[data-carousel]");
-  if (car) {
-    const track = $("[data-car-track]", car);
-    const cards = Array.from(track.children);
-    const stepSize = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth);
-    const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
-    const next = () => (atEnd() ? track.scrollTo({ left: 0 }) : track.scrollBy({ left: stepSize() }));
-    const prev = () => (track.scrollLeft <= 8 ? track.scrollTo({ left: track.scrollWidth }) : track.scrollBy({ left: -stepSize() }));
-    $("[data-car-next]", car).addEventListener("click", () => { next(); restart(); });
-    $("[data-car-prev]", car).addEventListener("click", () => { prev(); restart(); });
-    track.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { next(); e.preventDefault(); restart(); }
-      if (e.key === "ArrowRight") { prev(); e.preventDefault(); restart(); }
-    });
-    let timer = null;
-    let paused = false;
-    const restart = () => {
-      clearInterval(timer);
-      if (reduceMotion) return;
-      timer = setInterval(() => { if (!paused && !document.hidden) next(); }, 4200);
-    };
-    ["pointerenter", "focusin", "touchstart"].forEach((ev) => car.addEventListener(ev, () => (paused = true), { passive: true }));
-    ["pointerleave", "focusout"].forEach((ev) => car.addEventListener(ev, () => (paused = false)));
-    car.addEventListener("touchend", () => setTimeout(() => (paused = false), 3000), { passive: true });
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([e]) => (e.isIntersecting ? restart() : clearInterval(timer)), { threshold: 0.3 }).observe(car);
-    } else restart();
-  }
-
-  /* ---------- 16. Desktop-only hero parallax ---------- */
+  /* ---------- 12. Desktop-only hero parallax ---------- */
   const parallax = $("[data-parallax]");
   if (parallax && finePointer && !reduceMotion && window.matchMedia("(min-width: 960px)").matches) {
     let raf = 0;

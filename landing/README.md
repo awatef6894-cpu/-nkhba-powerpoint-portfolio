@@ -18,9 +18,13 @@ landing/
 
 ## Changing page values
 
+The price lives only in `config/pricing.js` (`PRICE_USD × SAR_PEG_RATE`); `scripts/sync-pricing.mjs`
+copies it into the HTML on every Vercel build.
+
+
 Everything lives in the `CONFIG` object at the top of `app.js`
 (including `introVideoUrl`, the video after the hero, streamed from Acadimiat storage):
-price, old price, batch, seats, deadline (and the countdown), stats, links, social
+batch, registration deadline line, stats, links, social
 accounts, the trainee-community switch (`communityReady`) and pixel IDs.
 Change it there once and every place on the page updates.
 

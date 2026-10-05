@@ -12,7 +12,7 @@ const PRICING = createRequire(import.meta.url)(join(root, "config/pricing.js"));
 const file = join(root, "index.html");
 const html = readFileSync(file, "utf8");
 
-const values = { priceNow: PRICING.PRICE_SAR, priceWas: PRICING.PRICE_WAS_SAR, currency: PRICING.currencyLabel };
+const values = { priceNow: PRICING.PRICE_SAR, currency: PRICING.currencyLabel };
 let out = html;
 for (const [key, val] of Object.entries(values)) {
   out = out.replace(new RegExp(`(data-cfg="${key}">)[^<]*(<)`, "g"), `$1${val}$2`);
@@ -20,8 +20,8 @@ for (const [key, val] of Object.entries(values)) {
 
 if (process.argv.includes("--check")) {
   if (out !== html) { console.error("index.html prices are out of sync with config/pricing.js"); process.exit(1); }
-  console.log(`prices in sync: ${PRICING.PRICE_SAR} ${PRICING.currencyLabel} (was ${PRICING.PRICE_WAS_SAR})`);
+  console.log(`prices in sync: ${PRICING.PRICE_SAR} ${PRICING.currencyLabel}`);
 } else {
   if (out !== html) writeFileSync(file, out);
-  console.log(`synced: ${PRICING.PRICE_SAR} ${PRICING.currencyLabel} (was ${PRICING.PRICE_WAS_SAR})`);
+  console.log(`synced: ${PRICING.PRICE_SAR} ${PRICING.currencyLabel}`);
 }
