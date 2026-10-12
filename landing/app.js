@@ -391,7 +391,8 @@ const CONFIG = {
     const cards = $$("[data-perk]", perks).sort((x, y) => x.dataset.perk - y.dataset.perk); // by number, 0 = card 1
     const dots = $$("[data-perk-dot]");
     const N = cards.length, SMALL = 76, BIG = 214, GAP = 10, STEP_MS = 2800, RESUME_MS = 6000;
-    let active = 0, timer = null, resumeT = null, inView = false, swiped = false, pausedUntil = 0;
+    let active = 0, timer = null, resumeT = null, inView = false, swiped = false, pausedUntil = 0, hovering = false;
+    const desktop = window.matchMedia("(min-width: 1024px)");
 
     const render = () => {
       cards.forEach((c, i) => {
@@ -410,7 +411,7 @@ const CONFIG = {
     const start = () => {
       stop();
       clearTimeout(resumeT);
-      if (!inView) return;
+      if (!inView || hovering) return;
       const wait = pausedUntil - Date.now();
       if (wait > 0) { resumeT = setTimeout(start, wait); return; }
       timer = setInterval(() => { active = (active + 1) % N; render(); }, STEP_MS);
@@ -424,6 +425,19 @@ const CONFIG = {
     };
 
     cards.forEach((c, i) => c.addEventListener("click", () => { if (!swiped) go(i); }));
+    // desktop: hovering a card opens it and holds the auto-advance until the mouse leaves the row
+    cards.forEach((c, i) => c.addEventListener("pointerenter", (e) => {
+      if (e.pointerType !== "mouse" || !desktop.matches) return;
+      hovering = true;
+      if (i !== active) { active = i; render(); }
+      stop(); clearTimeout(resumeT);
+    }));
+    perks.addEventListener("pointerleave", (e) => {
+      if (e.pointerType !== "mouse" || !hovering) return;
+      hovering = false;
+      pausedUntil = 0;
+      start();
+    });
     perks.addEventListener("keydown", (e) => {
       // RTL row: card 1 on the right, so ArrowLeft = next, ArrowRight = previous
       const map = { ArrowLeft: 1, ArrowRight: -1 };

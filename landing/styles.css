@@ -594,6 +594,97 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .footer-inner .copyright { grid-column: 1 / -1; text-align: center; }
 }
 
+/* desktop-only elements (hidden below 1024px) */
+.quote-photo, .perk-long { display: none; }
+
+/* =========================================================
+   ≥ 1024px — desktop layout (nothing below 1024px changes)
+   ========================================================= */
+@media (min-width: 1024px) {
+  :root { --gutter: 48px; --text-max: 1200px; --mid-max: 1200px; --wide-max: 1200px; }
+  .section { padding-block: 48px; }
+  .h2 { font-size: 46px; }
+  .h2-xl { font-size: 48px; }
+  .lead, .body-text { font-size: 19px; }
+
+  /* 1. hero: text on the right, intro video on the left */
+  .hero-split { display: grid; grid-template-columns: 1fr 1.08fr; align-items: center; gap: 56px; max-width: 1296px; margin-inline: auto; padding: 56px 48px 40px; }
+  .hero-split > section { padding: 0; }
+  .hero-split .container { max-width: none; padding-inline: 0; }
+  .hero { text-align: start; }
+  .hero-title { font-size: 50px; margin-block: 18px 14px; }
+  .hero .lead { margin-inline: 0; }
+  .hero .cta-group, .hero .proof { justify-content: flex-start; }
+  .intro-video .container { max-width: none; }
+
+  /* 2. after the program: three cards, tight spacing */
+  .shifts { margin-top: 26px; }
+
+  /* 3. coach quote: large photo + wide quote card */
+  .quote-section { padding-top: 48px; }
+  .quote-split { display: grid; grid-template-columns: 360px 1fr; gap: 48px; align-items: center; }
+  .quote-photo { display: block; width: 360px; height: 440px; object-fit: cover; object-position: 50% 18%; border-radius: 28px; box-shadow: var(--shadow-glass-strong); }
+  .quote-section .quote-card { max-width: none; margin: 0; padding: 52px 48px 32px; }
+  .quote-section .quote-card blockquote p { font-size: 27px; line-height: 1.75; }
+
+  /* 5. what you get: all five cards in one row, active card widens */
+  .perks { height: auto; max-width: 1296px; margin: 28px auto 0; padding-inline: 48px; }
+  .perks-track { position: relative; inset: auto; left: auto; width: 100%; gap: 12px; align-items: stretch; transform: none !important; }
+  .perk {
+    width: auto !important; height: 340px !important; flex: 1 1 0; min-width: 0; padding: 22px; border-radius: 24px;
+    transition: flex-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1), padding 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.7s cubic-bezier(0.16, 1, 0.3, 1), background 0.7s ease, box-shadow 0.7s ease, color 0.5s ease, opacity 0.5s ease;
+  }
+  .perk.is-active { flex-grow: 2.2; padding: 26px; border-radius: 28px; }
+  /* fixed text width = final inner width of the active card (row − 4 gaps − paddings, shared 2.2 : 1×4), so text never reflows while it grows */
+  .perk-full { width: calc((min(100vw - 96px, 1200px) - 276px) / 6.2 * 2.2 - 8px); }
+  .perk-title { font-size: 26px; }
+  .perk-desc { font-size: 16px; }
+  .perk-idle .perk-num { font-size: 15px; }
+  .perk-long { display: block; font-size: 18px; font-weight: 700; line-height: 1.5; color: #4d5a55; }
+  .perk-short { display: none; }
+  .perk-dots { margin-top: 18px; }
+
+  /* 6. before / after: same size, side by side */
+  .work { grid-template-columns: 1fr auto 1fr; gap: 22px; padding: 22px; }
+  .shot-before img { opacity: 0.8; }
+
+  /* 7. testimonials: featured pair side by side, three cards visible in the row */
+  .t-track[role="list"] { padding: 6px max(48px, calc((100vw - 1200px) / 2)) 22px; scroll-padding-inline: max(48px, calc((100vw - 1200px) / 2)); }
+  .t-track > li { scroll-snap-align: start; }
+  .t-track > li { flex-basis: calc((min(100vw - 96px, 1200px) - 24px) / 3); }
+
+  /* 8. coach: photo on the right, bio + logos + stats on the left */
+  #coach { display: grid; grid-template-columns: 400px 1fr; grid-template-rows: repeat(5, auto) 1fr; column-gap: 64px; max-width: 1296px; margin-inline: auto; padding-inline: 48px; }
+  #coach > .container { display: contents; }
+  #coach .text-block { text-align: start; }
+  #coach .coach-photo { grid-column: 1; grid-row: 1 / -1; width: 100%; margin: 0; align-self: start; }
+  #coach .section-label, #coach .h2, #coach .clients, #coach .bio, #coach .stats { grid-column: 2; }
+  #coach .section-label { justify-self: start; }
+  #coach .line-accent { margin-inline: 0; }
+  #coach .clients { margin-top: 18px; }
+  #coach .bio { margin-top: 18px; }
+  #coach .stats { margin-top: 22px; }
+
+  /* 11. promise: keep the statement readable */
+  .promise { max-width: 960px; margin-inline: auto; }
+
+  /* 12. join: card on the right, certificate on the left at the card's height */
+  #join { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; column-gap: 48px; max-width: 1296px; margin-inline: auto; padding-inline: 48px; }
+  #join > .container { display: contents; }
+  #join .h2 { grid-column: 1; grid-row: 1; }
+  #join .join-card { grid-column: 1; grid-row: 2; max-width: none; margin: 0; }
+  #join .h2 { grid-column: 1 / -1; margin-bottom: 22px; }
+  #join .certificate { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; max-width: none; height: 100%; margin: 0; }
+  #join .certificate img { flex: 1 1 0; height: 0; min-height: 0; width: 100%; object-fit: contain; background: #e9d4bb; } /* whole certificate visible, same beige as the photo */
+
+  /* 13. FAQ: sticky title on the right, questions on the left */
+  #faq { display: grid; grid-template-columns: 400px 1fr; column-gap: 64px; align-items: start; max-width: 1296px; margin-inline: auto; padding-inline: 48px; }
+  #faq > .container { max-width: none; margin: 0; padding-inline: 0; }
+  #faq > .text-block { position: sticky; top: calc(var(--header-h) + 32px); text-align: start; }
+  #faq .line-accent { margin-inline: 0; }
+  #faq .faq { margin-top: 0; }
+}
+
 /* =========================================================
    Reduced motion
    ========================================================= */
