@@ -384,6 +384,76 @@ const CONFIG = {
     });
   }
 
+  /* ---------- 11b. "What you get" cards: auto-advance, swipe, tap, keys ---------- */
+  const perks = $("[data-perks]");
+  if (perks) {
+    const track = $("[data-perks-track]", perks);
+    const cards = $$("[data-perk]", perks).sort((x, y) => x.dataset.perk - y.dataset.perk); // by number, 0 = card 1
+    const dots = $$("[data-perk-dot]");
+    const N = cards.length, SMALL = 76, BIG = 214, GAP = 10, STEP_MS = 2800, RESUME_MS = 6000;
+    let active = 0, timer = null, resumeT = null, inView = false, swiped = false, pausedUntil = 0;
+
+    const render = () => {
+      cards.forEach((c, i) => {
+        const on = i === active;
+        c.classList.toggle("is-active", on);
+        c.setAttribute("aria-current", on ? "true" : "false");
+        c.tabIndex = on ? 0 : -1;
+      });
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === active));
+      // DOM order is card 5 … card 1 (left → right); centre the active card
+      const pos = N - 1 - active;
+      track.style.setProperty("--perks-x", `-${pos * (SMALL + GAP) + BIG / 2}px`);
+    };
+    const stop = () => { clearInterval(timer); timer = null; };
+    // auto-advance only while visible, and never inside the 6 s pause after a touch
+    const start = () => {
+      stop();
+      clearTimeout(resumeT);
+      if (!inView) return;
+      const wait = pausedUntil - Date.now();
+      if (wait > 0) { resumeT = setTimeout(start, wait); return; }
+      timer = setInterval(() => { active = (active + 1) % N; render(); }, STEP_MS);
+    };
+    const pause = () => { pausedUntil = Date.now() + RESUME_MS; start(); };
+    const go = (i, focus = false) => {
+      active = Math.max(0, Math.min(N - 1, i));
+      render();
+      pause();
+      if (focus) cards[active].focus({ preventScroll: true });
+    };
+
+    cards.forEach((c, i) => c.addEventListener("click", () => { if (!swiped) go(i); }));
+    perks.addEventListener("keydown", (e) => {
+      // RTL row: card 1 on the right, so ArrowLeft = next, ArrowRight = previous
+      const map = { ArrowLeft: 1, ArrowRight: -1 };
+      if (e.key in map) { go(active + map[e.key], true); e.preventDefault(); }
+      else if (e.key === "Home") { go(0, true); e.preventDefault(); }
+      else if (e.key === "End") { go(N - 1, true); e.preventDefault(); }
+    });
+    let sx = null, sy = null;
+    perks.addEventListener("pointerdown", (e) => { sx = e.clientX; sy = e.clientY; pause(); });
+    perks.addEventListener("pointercancel", () => { sx = null; });
+    perks.addEventListener("pointerup", (e) => {
+      if (sx === null) return;
+      const dx = e.clientX - sx, dy = e.clientY - sy;
+      sx = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        swiped = true;
+        setTimeout(() => (swiped = false), 350);
+        go(active + (dx > 0 ? 1 : -1)); // swipe right = next card
+      }
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        inView = e.isIntersecting;
+        if (inView) start();
+        else { stop(); clearTimeout(resumeT); }
+      }, { threshold: 0.35 }).observe(perks);
+    } else { inView = true; start(); }
+    render();
+  }
+
   /* ---------- 12. Desktop-only hero parallax ---------- */
   const parallax = $("[data-parallax]");
   if (parallax && finePointer && !reduceMotion && window.matchMedia("(min-width: 960px)").matches) {
