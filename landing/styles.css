@@ -360,7 +360,9 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .perk-full, .perk-idle { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
 .perk-idle { justify-content: space-between; }
 .perk-full { display: none; gap: 8px; width: 174px; }
-.perk.is-active .perk-full { display: flex; animation: perk-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.perk.is-active .perk-full { display: flex; animation: perk-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both; } /* waits until the card has grown */
+.perk:not(.is-active) .perk-idle { animation: perk-fade 0.4s ease 0.3s both; } /* waits until the card has shrunk */
+@keyframes perk-fade { from { opacity: 0; } to { opacity: 1; } }
 .perk.is-active .perk-idle { display: none; }
 @keyframes perk-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .perk-idle .perk-num { font-size: 13px; font-weight: 700; color: #a3aba6; }
@@ -601,7 +603,7 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 
   .js .reveal { opacity: 1; translate: none; }
   .perks-track, .perk, .perk::before, .perk-dot { transition: none !important; }
-  .perk.is-active .perk-full { animation: none; }
+  .perk.is-active .perk-full, .perk:not(.is-active) .perk-idle { animation: none; }
   .t-track { scroll-behavior: auto; }
 
 }
