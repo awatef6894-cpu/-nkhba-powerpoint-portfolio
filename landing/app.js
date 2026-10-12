@@ -1,37 +1,23 @@
 /* =========================================================
    نخبة البوربوينت — Landing page behaviour
    ---------------------------------------------------------
-   CONFIG is the ONE place to change page values. Every price,
-   batch, deadline, stat and link on the page is filled from here.
+   CONFIG is the ONE place to change page values. Every batch,
+   stat and link on the page is filled from here.
    ========================================================= */
 const CONFIG = {
   checkoutUrl: "https://1powerpoint.acadimiat.com/direct-checkout/1/4837",
 
-  // Price comes from config/pricing.js — do not type it here.
-  priceNow: PRICING.PRICE_SAR,
-  currency: PRICING.currencyLabel,
-  currencyCode: PRICING.currencyCode,
-
   batchNumber: 7,
 
-  // Program facts (hero line and pricing card)
+  // Program facts (system line and join card)
   units: 14,
 
   batch: "الدفعة 7",
   pastBatches: 6,
 
-  // Registration deadline (Riyadh time). No countdown is shown; after this moment
-  // the "open until" line switches to closedLabel.
-  deadlineLabel: "25 أكتوبر",
-  deadlineISO: "2026-10-25T23:59:59+03:00",
-  closedLabel: "انتهى التسجيل في الدفعة 7",
-
   trainees: 5000,
   rating: 4.95,
   designs: 829,
-
-  // Switch to true once the trainee community is live — shows it in the pricing list.
-  communityReady: false,
 
   designServiceUrl: "https://wa.me/966569886979",
 
@@ -71,12 +57,9 @@ const CONFIG = {
 
   /* ---------- 1. Fill config values ---------- */
   const cfgText = {
-    priceNow: String(CONFIG.priceNow),
-    currency: CONFIG.currency,
     batch: CONFIG.batch,
     batchNumber: String(CONFIG.batchNumber),
     units: String(CONFIG.units),
-    deadlineLabel: CONFIG.deadlineLabel,
     trainees: fmt(CONFIG.trainees),
     rating: fmt(CONFIG.rating, 2),
     designs: fmt(CONFIG.designs),
@@ -94,7 +77,6 @@ const CONFIG = {
     const val = el.dataset.cfgHref.split(".").reduce((o, k) => (o ? o[k] : undefined), CONFIG);
     if (val) el.href = val;
   });
-  $$("[data-community]").forEach((el) => (el.hidden = !CONFIG.communityReady));
 
   /* ---------- 2. Tracking pixels (only load when an ID is set) ---------- */
   const P = CONFIG.pixels;
@@ -147,7 +129,8 @@ const CONFIG = {
   }
   const anyPixel = Boolean(P.tiktok || P.meta || P.ga4 || P.gtm);
   const trackCheckout = (label) => {
-    const payload = { value: CONFIG.priceNow, currency: CONFIG.currencyCode, content_name: "برنامج نخبة البوربوينت", content_id: CONFIG.batch };
+    // Checkout value for ad-platform reporting only (never shown on the page).
+    const payload = { value: 200, currency: "USD", content_name: "برنامج نخبة البوربوينت", content_id: CONFIG.batch };
     try {
       if (window.ttq) window.ttq.track("InitiateCheckout", payload);
       if (window.fbq) window.fbq("track", "InitiateCheckout", { value: payload.value, currency: payload.currency });
@@ -236,12 +219,7 @@ const CONFIG = {
     $$("[data-count]").forEach((el) => cio.observe(el));
   }
 
-  /* ---------- 7. Registration deadline (static line, no countdown) ---------- */
-  if (Date.now() > new Date(CONFIG.deadlineISO).getTime()) {
-    $$("[data-deadline-line]").forEach((el) => (el.textContent = CONFIG.closedLabel));
-  }
-
-  /* ---------- 8. Video helpers (lazy sources, start offset) ---------- */
+  /* ---------- 7. Video helpers (lazy sources, start offset) ---------- */
   const loadVideo = (video) => {
     if (video.dataset.loaded) return;
     video.dataset.loaded = "1";
@@ -285,22 +263,25 @@ const CONFIG = {
     });
   });
 
-  /* ---------- 9. Before / after — tabs, one work at a time ---------- */
+  /* ---------- 8. Before / after — tabs, one work at a time; "after" plays only on tap ---------- */
   const works = $("[data-works]");
   if (works) {
     const tabs = $$('[role="tab"]', works);
     const panels = tabs.map((t) => document.getElementById(t.getAttribute("aria-controls")));
     const tablist = $('[role="tablist"]', works);
     let current = 0;
-    let inView = false;
 
-    const syncVideos = () => {
-      panels.forEach((p, i) => {
-        const v = $("video", p);
-        if (i === current && inView && !reduceMotion) { loadVideo(v); v.play().catch(() => {}); }
-        else v.pause();
-      });
-    };
+    const stopVideos = () => panels.forEach((p) => {
+      $("video", p).pause();
+      $(".shot-after", p).classList.remove("is-playing");
+    });
+    panels.forEach((p) => {
+      const shot = $(".shot-after", p);
+      const v = $("video", shot);
+      const play = () => { loadVideo(v); shot.classList.add("is-playing"); v.play().catch(() => {}); };
+      $("[data-shot-play]", shot).addEventListener("click", play);
+      v.addEventListener("click", () => (v.paused ? play() : (v.pause(), shot.classList.remove("is-playing"))));
+    });
     const select = (i, focus = false) => {
       current = (i + tabs.length) % tabs.length;
       tabs.forEach((t, k) => {
@@ -311,7 +292,7 @@ const CONFIG = {
       });
       tablist.style.setProperty("--tab", current);
       if (focus) tabs[current].focus();
-      syncVideos();
+      stopVideos();
     };
     tabs.forEach((t, i) => t.addEventListener("click", () => select(i)));
     tablist.addEventListener("keydown", (e) => {
@@ -333,13 +314,10 @@ const CONFIG = {
         x0 = y0 = null;
       });
     });
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; syncVideos(); }, { threshold: 0.3 }).observe(works);
-    }
     select(0);
   }
 
-  /* ---------- 10. Media dialog: full "after" video or enlarged "before" ---------- */
+  /* ---------- 9. Media dialog: full "after" video or enlarged "before" ---------- */
   const dialog = $("[data-media-dialog]");
   const slot = dialog && $("[data-media-slot]", dialog);
   const dTitle = dialog && $("[data-media-title]", dialog);
@@ -352,6 +330,7 @@ const CONFIG = {
   };
   $$("[data-video-open]").forEach((btn) => {
     btn.addEventListener("click", () => {
+      $$(".shot-after").forEach((shot) => { $("video", shot).pause(); shot.classList.remove("is-playing"); });
       const base = btn.dataset.videoOpen;
       const v = document.createElement("video");
       v.controls = true; v.playsInline = true; v.muted = true; v.autoplay = true;
@@ -378,7 +357,7 @@ const CONFIG = {
     });
   }
 
-  /* ---------- 11. FAQ accordion ---------- */
+  /* ---------- 10. FAQ accordion ---------- */
   $$("[data-faq] .faq-item").forEach((item) => {
     const btn = $("button", item);
     btn.addEventListener("click", () => {
@@ -387,6 +366,36 @@ const CONFIG = {
       item.classList.toggle("is-open", open);
     });
   });
+
+  /* ---------- 11. Testimonials carousel: auto-advances right → left, arrows, swipe ---------- */
+  const car = $("[data-carousel]");
+  if (car) {
+    const track = $("[data-car-track]", car);
+    const cards = Array.from(track.children);
+    const stepSize = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth);
+    const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+    const next = () => (atEnd() ? track.scrollTo({ left: 0 }) : track.scrollBy({ left: stepSize() }));
+    const prev = () => (track.scrollLeft <= 8 ? track.scrollTo({ left: track.scrollWidth }) : track.scrollBy({ left: -stepSize() }));
+    $("[data-car-next]", car).addEventListener("click", () => { next(); restart(); });
+    $("[data-car-prev]", car).addEventListener("click", () => { prev(); restart(); });
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { next(); e.preventDefault(); restart(); }
+      if (e.key === "ArrowRight") { prev(); e.preventDefault(); restart(); }
+    });
+    let timer = null;
+    let paused = false;
+    const restart = () => {
+      clearInterval(timer);
+      if (reduceMotion) return;
+      timer = setInterval(() => { if (!paused && !document.hidden) next(); }, 4200);
+    };
+    ["pointerenter", "focusin", "touchstart"].forEach((ev) => car.addEventListener(ev, () => (paused = true), { passive: true }));
+    ["pointerleave", "focusout"].forEach((ev) => car.addEventListener(ev, () => (paused = false)));
+    car.addEventListener("touchend", () => setTimeout(() => (paused = false), 3000), { passive: true });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => (e.isIntersecting ? restart() : clearInterval(timer)), { threshold: 0.3 }).observe(car);
+    } else restart();
+  }
 
   /* ---------- 12. Desktop-only hero parallax ---------- */
   const parallax = $("[data-parallax]");

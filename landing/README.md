@@ -1,4 +1,4 @@
-# صفحة هبوط — برنامج نخبة البوربوينت (الدفعة 8)
+# صفحة هبوط — برنامج نخبة البوربوينت (الدفعة 7)
 
 Static landing page (HTML + CSS + JS, no build step). Hosted on Vercel under a custom
 sub-domain of `powerpoint-ksa.store`; checkout stays on Acadimiat.
@@ -18,14 +18,9 @@ landing/
 
 ## Changing page values
 
-The price lives only in `config/pricing.js` (`PRICE_USD × SAR_PEG_RATE`); `scripts/sync-pricing.mjs`
-copies it into the HTML on every Vercel build.
-
-
 Everything lives in the `CONFIG` object at the top of `app.js`
 (including `introVideoUrl`, the video after the hero, streamed from Acadimiat storage):
-batch, registration deadline line, stats, links, social
-accounts, the trainee-community switch (`communityReady`) and pixel IDs.
+batch, stats, links, social accounts and pixel IDs.
 Change it there once and every place on the page updates.
 
 ## Deploy on Vercel (custom domain, no Vercel branding)
@@ -56,4 +51,5 @@ Change it there once and every place on the page updates.
 ## Tracking
 
 Paste IDs into `CONFIG.pixels` (TikTok, Meta, GA4, GTM). Empty = not loaded.
-Every CTA fires `InitiateCheckout` (GA4: `begin_checkout`) before redirecting.
+Every CTA fires `InitiateCheckout` (GA4: `begin_checkout`) before redirecting, with
+`value: 200, currency: "USD"` set in `trackCheckout` in `app.js` (for ad reporting only, never shown on the page).
