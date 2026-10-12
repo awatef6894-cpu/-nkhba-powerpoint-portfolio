@@ -367,7 +367,7 @@ const CONFIG = {
     });
   });
 
-  /* ---------- 11. Testimonials carousel: auto-advances right → left, arrows, swipe ---------- */
+  /* ---------- 11. Testimonials carousel: arrows + swipe only (no auto-advance) ---------- */
   const car = $("[data-carousel]");
   if (car) {
     const track = $("[data-car-track]", car);
@@ -376,25 +376,12 @@ const CONFIG = {
     const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
     const next = () => (atEnd() ? track.scrollTo({ left: 0 }) : track.scrollBy({ left: stepSize() }));
     const prev = () => (track.scrollLeft <= 8 ? track.scrollTo({ left: track.scrollWidth }) : track.scrollBy({ left: -stepSize() }));
-    $("[data-car-next]", car).addEventListener("click", () => { next(); restart(); });
-    $("[data-car-prev]", car).addEventListener("click", () => { prev(); restart(); });
+    $("[data-car-next]", car).addEventListener("click", next);
+    $("[data-car-prev]", car).addEventListener("click", prev);
     track.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { next(); e.preventDefault(); restart(); }
-      if (e.key === "ArrowRight") { prev(); e.preventDefault(); restart(); }
+      if (e.key === "ArrowLeft") { next(); e.preventDefault(); }
+      if (e.key === "ArrowRight") { prev(); e.preventDefault(); }
     });
-    let timer = null;
-    let paused = false;
-    const restart = () => {
-      clearInterval(timer);
-      if (reduceMotion) return;
-      timer = setInterval(() => { if (!paused && !document.hidden) next(); }, 4200);
-    };
-    ["pointerenter", "focusin", "touchstart"].forEach((ev) => car.addEventListener(ev, () => (paused = true), { passive: true }));
-    ["pointerleave", "focusout"].forEach((ev) => car.addEventListener(ev, () => (paused = false)));
-    car.addEventListener("touchend", () => setTimeout(() => (paused = false), 3000), { passive: true });
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([e]) => (e.isIntersecting ? restart() : clearInterval(timer)), { threshold: 0.3 }).observe(car);
-    } else restart();
   }
 
   /* ---------- 12. Desktop-only hero parallax ---------- */
