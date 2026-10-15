@@ -367,6 +367,37 @@ const CONFIG = {
     });
   });
 
+  /* ---------- 10b. Learning path: one station open at a time on mobile, all open on desktop ---------- */
+  const path = $("[data-path]");
+  if (path) {
+    const stations = $$(".station", path);
+    const allBtn = $("[data-path-all]");
+    const wide = window.matchMedia("(min-width: 1024px)");
+    let openIdx = 0, all = false;
+    const apply = () => {
+      stations.forEach((st, i) => {
+        const on = wide.matches || all || i === openIdx;
+        st.classList.toggle("is-open", on);
+        const btn = $(".station-head", st);
+        btn.setAttribute("aria-expanded", String(on));
+        btn.disabled = wide.matches; // desktop shows the whole path, nothing to toggle
+      });
+      if (allBtn) allBtn.textContent = all ? "اطوِ المسار" : "افتح المسار كامل (14 مرحلة)";
+    };
+    stations.forEach((st, i) => $(".station-head", st).addEventListener("click", () => {
+      openIdx = !all && openIdx === i ? -1 : i;
+      all = false;
+      apply();
+    }));
+    if (allBtn) allBtn.addEventListener("click", () => {
+      all = !all;
+      if (!all) openIdx = 0;
+      apply();
+    });
+    wide.addEventListener("change", apply);
+    apply();
+  }
+
   /* ---------- 11. Testimonials carousel: arrows + swipe only (no auto-advance) ---------- */
   const car = $("[data-carousel]");
   if (car) {
