@@ -176,6 +176,40 @@ const CONFIG = {
     }).observe(hero);
   }
 
+  /* ---------- 4b. Promo bar: copy the first-order code, close for this visit ---------- */
+  const promo = $("[data-promo]");
+  if (promo) {
+    try { if (sessionStorage.getItem("promoClosed") === "1") promo.hidden = true; } catch (_) { /* storage blocked */ }
+    const code = promo.dataset.code;
+    const toast = $("[data-promo-toast]", promo);
+    let toastT = 0;
+    const say = (msg) => {
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastT);
+      toastT = setTimeout(() => toast.classList.remove("is-on"), 2200);
+    };
+    const fallbackCopy = () => {
+      const t = document.createElement("textarea");
+      t.value = code; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
+      t.remove();
+      return ok;
+    };
+    $("[data-promo-copy]", promo).addEventListener("click", () => {
+      const done = () => say(`تم نسخ الكود ${code} ✓`);
+      const fail = () => say(`الكود: ${code}`);
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(code).then(done, () => (fallbackCopy() ? done() : fail()));
+      else if (fallbackCopy()) done(); else fail();
+    });
+    $("[data-promo-close]", promo).addEventListener("click", () => {
+      promo.hidden = true;
+      try { sessionStorage.setItem("promoClosed", "1"); } catch (_) { /* storage blocked */ }
+    });
+  }
+
   /* ---------- 5. Entrance reveal (stagger 80ms, once) ---------- */
   const reveals = $$(".reveal");
   reveals.forEach((el) => {

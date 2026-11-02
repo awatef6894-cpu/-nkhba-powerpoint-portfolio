@@ -179,6 +179,43 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .avatars img { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; margin-inline-start: -9px; box-shadow: 0 2px 6px rgba(17, 73, 60, 0.18); background: #fff; }
 .avatars img:first-child { margin-inline-start: 0; }
 
+/* ---------- promo bar: first-order code, calm right → left marquee, tap to copy ---------- */
+.promo-bar {
+  position: relative; z-index: 51; display: flex; align-items: center; height: 44px; overflow: hidden; color: #fff;
+  background: linear-gradient(to right, #144f5e 0%, #306d68 32%, #529175 68%, #6eaf7f 100%);
+}
+.promo-bar[hidden] { display: none; }
+.promo-copy {
+  flex: 1; min-width: 0; height: 100%; overflow: hidden; direction: ltr; cursor: copy;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+.promo-copy:focus-visible { outline: 2px solid #eed52f; outline-offset: -3px; }
+.promo-track { display: flex; align-items: center; width: max-content; height: 100%; animation: promo-marquee 42s linear infinite; }
+@media (hover: hover) and (pointer: fine) { .promo-bar:hover .promo-track { animation-play-state: paused; } } /* real mouse only: a tap must not freeze it */
+.promo-copy:focus-visible .promo-track { animation-play-state: paused; }
+@keyframes promo-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } } /* content drifts right → left */
+.promo-run { display: flex; flex: none; }
+.promo-item { direction: rtl; display: inline-flex; align-items: center; gap: 8px; padding-inline: 34px; font-size: 14px; font-weight: 700; line-height: 1; white-space: nowrap; }
+.promo-sep { opacity: 0.7; }
+.promo-code { color: #eed52f; letter-spacing: 0.06em; }
+.promo-ico { flex: none; }
+.promo-close { flex: none; display: grid; place-items: center; width: 32px; height: 32px; margin-inline: 6px 10px; border-radius: 50%; color: #fff; background: #0d3139; box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.5); }
+.promo-close:hover { background: #082228; }
+.promo-close:focus-visible { outline: 2px solid #eed52f; outline-offset: 2px; }
+.promo-toast {
+  position: absolute; top: 50%; left: 50%; z-index: 2; padding: 6px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 700; white-space: nowrap; pointer-events: none;
+  color: #fff; background: rgba(13, 49, 57, 0.94); box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.5);
+  opacity: 0; transform: translate(-50%, -40%); transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.promo-toast.is-on { opacity: 1; transform: translate(-50%, -50%); }
+
+/* very small phones (< 360px): header logo + «ابدأ التدريب الآن» on one line */
+@media (max-width: 359px) {
+  .site-header .btn-sm { padding-inline: 11px; font-size: 13.5px; white-space: nowrap; }
+  .site-header .brand { gap: 8px; }
+  .site-header .brand-name { font-size: 15px; }
+}
+
 /* ---------- header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
@@ -651,6 +688,9 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .h2-xl { font-size: 48px; }
   .lead, .body-text { font-size: 19px; }
 
+  .promo-bar { height: 48px; }
+  .promo-item { font-size: 15px; padding-inline: 44px; }
+
   /* 1. hero: text on the right, intro video on the left */
   .hero-split { display: grid; grid-template-columns: 1fr 1.08fr; align-items: center; gap: 56px; max-width: 1296px; margin-inline: auto; padding: 56px 48px 40px; }
   .hero-split > section { padding: 0; }
@@ -756,6 +796,8 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
   .perks-track, .perk, .perk::before, .perk-dot { transition: none !important; }
   .perk.is-active .perk-full, .perk:not(.is-active) .perk-idle { animation: none; }
   .station-panel, .station.is-open .station-panel, .station-chev, .station { transition: none !important; }
+  .promo-track { animation: none !important; width: 100%; justify-content: center; }
+  .promo-run + .promo-run, .promo-item:not(:first-child) { display: none; }
   .t-track { scroll-behavior: auto; }
 
 }
