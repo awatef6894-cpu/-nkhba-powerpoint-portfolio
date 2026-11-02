@@ -28,6 +28,9 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/janna-lt-700.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/janna-lt-400.woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -387,102 +390,213 @@
       </div>
     </section>
 
-    <!-- ============ 8. LEARNING PATH (accordion on mobile, five columns on desktop) ============ -->
-    <section class="section" id="path" aria-labelledby="path-title">
-      <div class="container text-block">
-        <p class="perks-kicker reveal"><span class="grad-text">خطوة بخطوة</span></p>
-        <h2 class="h2 reveal" id="path-title">مسار التعلم</h2>
-        <p class="lead reveal">14 مرحلة موزعة على القواعد الخمس، تمشي فيها بالترتيب من الأساس لين تسلّم ملفك.</p>
-      </div>
-      <div class="container container-mid">
-        <ol class="path reveal" role="list" data-path>
-          <li class="station is-open">
-            <h3 class="station-h"><button class="station-head" type="button" id="st-1-btn" aria-expanded="true" aria-controls="st-1">
-              <span class="station-ico"><img src="assets/img/rule-1.webp" width="400" height="400" alt="" loading="lazy" decoding="async"></span>
-              <span class="station-name"><small>القاعدة 01</small><b>التحليل</b></span>
-              <span class="station-count">3 مراحل</span>
-              <span class="station-chev" aria-hidden="true"></span>
-            </button></h3>
-            <div class="station-panel" id="st-1" role="region" aria-labelledby="st-1-btn">
-              <div>
-                <ol class="stages" role="list">
-                  <li class="stage"><span class="stage-num">01</span><span class="stage-t">أساسيات برنامج البوربوينت</span></li>
-                  <li class="stage"><span class="stage-num">02</span><span class="stage-t">تقنيات استراتيجية للتدرب على البرنامج</span></li>
-                  <li class="stage"><span class="stage-num">03</span><span class="stage-t">أسرار برنامج البوربوينت</span></li>
-                </ol>
-              </div>
+    <!-- ============ 8. TRAINING ROADMAP (10 stages, native details/summary) ============ -->
+    <section class="section roadmap-section" id="path" aria-labelledby="path-title">
+      <div class="container">
+        <div class="npbrm">
+          <div class="npbrm-panel">
+            <header class="npbrm-head">
+              <span class="npbrm-eyebrow"><span class="npbrm-dot"></span> ماذا ستتعلم</span>
+              <h2 id="path-title">خارطة الطريق التدريبية</h2>
+              <p class="npbrm-sub">رحلتك من الصفر حتى الاحتراف الكامل في تصميم العروض التقديمية</p>
+            </header>
+
+            <div class="npbrm-list">
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">01</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">تبدأ من هنا… من الصفر</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تتقن <b>واجهة بوربوينت كاملة</b> من أول يوم، حتى لو ما فتحت البرنامج قبل أبدًا</li>
+                    <li class="npbrm-desc-item">تتعلم اختصارات وإعدادات مخفية توفّر عليك <b>ساعات من وقتك</b> كل مرة تفتح ملف</li>
+                    <li class="npbrm-desc-item">تتحرك داخل البرنامج بثقة وسرعة، بدون تردد أو بحث عن أي أداة</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">02</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">تطوير الأساس للعمل</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تتعلم قواعد <b>التايبوغرافيا والتباعد والمحاذاة</b> بطريقة عملية وسهلة</li>
+                    <li class="npbrm-desc-item">تبني نظام ألوان احترافي يناسب هوية أي جهة أو شركة</li>
+                    <li class="npbrm-desc-item">تصنع فرقًا واضحًا بين عرض "مصمم بعناية" وعرض عشوائي</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">03</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">من ثابت إلى احترافي: غلاف عرضك</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تصمم بنفسك <b>كل نوع شريحة</b> تحتاجه: غلاف، محتويات، مخطط زمني، مقارنة، خاتمة</li>
+                    <li class="npbrm-desc-item">تخرج بمكتبة شرائح جاهزة تستخدمها وتطوّرها في أي مشروع قادم</li>
+                    <li class="npbrm-desc-item">تنتقل من التقليد إلى الإبداع الشخصي في كل شريحة تصممها</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item npbrm-hot">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">04</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">من أرقام إلى داشبورد ذكي وتفاعلي</span><span class="npbrm-tag">🔥 جديد</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تحوّل جدول أرقام ممل إلى <b>داشبورد بصري</b> يحكي قصة ويشرح نفسه</li>
+                    <li class="npbrm-desc-item">تتقن مؤشرات الأداء KPIs والمخططات التفاعلية باحترافية</li>
+                    <li class="npbrm-desc-item">توجّه عين المشاهد مباشرة نحو الرقم الأهم بتسلسل بصري ذكي</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item npbrm-hot">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">05</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">تقنيات احترافية جديدة ومتقدمة</span><span class="npbrm-tag">🔥 جديد</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تصمم إنفوجرافيك يلخص أفكار معقدة في <b>لمحة واحدة</b></li>
+                    <li class="npbrm-desc-item">تضيف عناصر ثلاثية الأبعاد تعطي عروضك عمقًا حقيقيًا وملموسًا</li>
+                    <li class="npbrm-desc-item">تتقن خرائط بصرية وتقنية Zoom Slide نادرة حتى في الدورات المتخصصة</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item npbrm-hot">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">06</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">الذكاء الاصطناعي الإبداعي</span><span class="npbrm-tag">🔥 جديد</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تربط الذكاء الاصطناعي مباشرة ببوربوينت، ليعمل معك <b>داخل صفحة العرض نفسها</b></li>
+                    <li class="npbrm-desc-item">تولّد <b>عرضًا تقديميًا كاملًا</b> بالذكاء الاصطناعي بطريقة مختلفة تمامًا عن الشكل المعتاد والمُمل</li>
+                    <li class="npbrm-desc-item">تتعرف على أدوات ذكية حديثة غير المتعارف عليها، توفّر عليك وقتًا طويلًا من العمل اليدوي</li>
+                    <li class="npbrm-desc-item">تتعلم طريقة تحريك عروض الذكاء الاصطناعي لتبدو حيّة واحترافية لا ثابتة</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">07</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">حركة احترافية تصنع عرضًا تفاعليًا</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تضيف حركة مدروسة تخدم القصة بدل الحركة العشوائية المشتتة</li>
+                    <li class="npbrm-desc-item">تتقن تقنية Morph وانتقالات الشرائح الاحترافية بثقة</li>
+                    <li class="npbrm-desc-item">تضبط توقيت الحركة Timing ليشد انتباه المشاهد من أول ثانية</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">08</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">التجربة الحقيقية… بين يديك</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تطبّق كل ما تعلمته على <b>مشروع كامل</b> من بيئة العمل الحقيقية</li>
+                    <li class="npbrm-desc-item">تتدرب على قراءة بريف العميل وبناء هيكل العرض Storyline</li>
+                    <li class="npbrm-desc-item">تنظّم المحتوى بطريقة منطقية ومقنعة كما في المشاريع الفعلية</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">09</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">لحظة الحقيقة: مشروعك الأخير</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تصمم عرضك الخاص من الفكرة إلى الشريحة الأخيرة بثقة كاملة</li>
+                    <li class="npbrm-desc-item">تحصل على <b>تقييم مباشر ومفصّل</b> من المدربة مع ملاحظات دقيقة</li>
+                    <li class="npbrm-desc-item">تخرج بتوصيات تطوير شخصية تنطلق بها كمصمم عروض محترف</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="npbrm-item">
+                <summary class="npbrm-row">
+                  <span class="npbrm-row-main">
+                    <span class="npbrm-idx">10</span>
+                    <span class="npbrm-title-line"><span class="npbrm-title">شهادتك جاهزة</span></span>
+                  </span>
+                  <span class="npbrm-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15.5 18 9.5"/></svg>
+                  </span>
+                </summary>
+                <div class="npbrm-desc-wrap">
+                  <ul class="npbrm-desc-list">
+                    <li class="npbrm-desc-item">تستلم <b>شهادة معتمدة</b> باسمك ورقمها التسلسلي الخاص بك</li>
+                    <li class="npbrm-desc-item">تحصل على جميع العروض الجاهزة الموجودة في متجرنا</li>
+                    <li class="npbrm-desc-item">تقدر تحجز مكالمة مع المدربة تشتغل فيها معك على أحد عروضك</li>
+                    <li class="npbrm-desc-item">تدخل مساحة المتدرب، وفيها دعم مستمر وفوائد كثيرة وتحديات شهرية</li>
+                  </ul>
+                </div>
+              </details>
+
             </div>
-          </li>
-          <li class="station">
-            <h3 class="station-h"><button class="station-head" type="button" id="st-2-btn" aria-expanded="false" aria-controls="st-2">
-              <span class="station-ico"><img src="assets/img/rule-2.webp" width="400" height="400" alt="" loading="lazy" decoding="async"></span>
-              <span class="station-name"><small>القاعدة 02</small><b>التنظيم</b></span>
-              <span class="station-count">3 مراحل</span>
-              <span class="station-chev" aria-hidden="true"></span>
-            </button></h3>
-            <div class="station-panel" id="st-2" role="region" aria-labelledby="st-2-btn">
-              <div>
-                <ol class="stages" role="list">
-                  <li class="stage"><span class="stage-num">04</span><span class="stage-t">التدرب على تصميم الشرائح الأساسية لكل برزنتيشن مهني</span></li>
-                  <li class="stage"><span class="stage-num">06</span><span class="stage-t">بناء وتصميم الفهرس الذكي والاحترافي</span></li>
-                  <li class="stage"><span class="stage-num">08</span><span class="stage-t">البدء بالتايم لاين الاحترافي والمؤسسي</span></li>
-                </ol>
-              </div>
-            </div>
-          </li>
-          <li class="station">
-            <h3 class="station-h"><button class="station-head" type="button" id="st-3-btn" aria-expanded="false" aria-controls="st-3">
-              <span class="station-ico"><img src="assets/img/rule-3.webp" width="400" height="400" alt="" loading="lazy" decoding="async"></span>
-              <span class="station-name"><small>القاعدة 03</small><b>بناء الهوية</b></span>
-              <span class="station-count">مرحلتان</span>
-              <span class="station-chev" aria-hidden="true"></span>
-            </button></h3>
-            <div class="station-panel" id="st-3" role="region" aria-labelledby="st-3-btn">
-              <div>
-                <ol class="stages" role="list">
-                  <li class="stage"><span class="stage-num">05</span><span class="stage-t">التدرب على الإنترو الاحترافي المتحرك</span></li>
-                  <li class="stage"><span class="stage-num">09</span><span class="stage-t">فهم ماهية الشرائح التي تحتوي على صور</span></li>
-                </ol>
-              </div>
-            </div>
-          </li>
-          <li class="station">
-            <h3 class="station-h"><button class="station-head" type="button" id="st-4-btn" aria-expanded="false" aria-controls="st-4">
-              <span class="station-ico"><img src="assets/img/rule-4.webp" width="400" height="400" alt="" loading="lazy" decoding="async"></span>
-              <span class="station-name"><small>القاعدة 04</small><b>دمج الأفكار</b></span>
-              <span class="station-count">4 مراحل</span>
-              <span class="station-chev" aria-hidden="true"></span>
-            </button></h3>
-            <div class="station-panel" id="st-4" role="region" aria-labelledby="st-4-btn">
-              <div>
-                <ol class="stages" role="list">
-                  <li class="stage"><span class="stage-num">07</span><span class="stage-t">التدرب على الإنفوجرافيك المهني</span></li>
-                  <li class="stage stage-dash"><span class="stage-num">10</span><span class="stage-t">بناء الداشبورد الذكي</span><span class="stage-badge">مسار الداشبورد</span></li>
-                  <li class="stage stage-dash"><span class="stage-num">11</span><span class="stage-t">التدرب على الداشبورد الاحترافية</span><span class="stage-badge">مسار الداشبورد</span></li>
-                  <li class="stage"><span class="stage-num">12</span><span class="stage-t">بناء والتدرب على تصميم الخرائط</span></li>
-                </ol>
-              </div>
-            </div>
-          </li>
-          <li class="station">
-            <h3 class="station-h"><button class="station-head" type="button" id="st-5-btn" aria-expanded="false" aria-controls="st-5">
-              <span class="station-ico"><img src="assets/img/rule-5.webp" width="400" height="400" alt="" loading="lazy" decoding="async"></span>
-              <span class="station-name"><small>القاعدة 05</small><b>تنفيذ الملف</b></span>
-              <span class="station-count">مرحلتان</span>
-              <span class="station-chev" aria-hidden="true"></span>
-            </button></h3>
-            <div class="station-panel" id="st-5" role="region" aria-labelledby="st-5-btn">
-              <div>
-                <ol class="stages" role="list">
-                  <li class="stage"><span class="stage-num">13</span><span class="stage-t">بناء استراتيجية شخصية مخصصة في برنامج البوربوينت</span></li>
-                  <li class="stage"><span class="stage-num">14</span><span class="stage-t">معلومات يجب فهمها عن برنامج البوربوينت</span></li>
-                </ol>
-              </div>
-            </div>
-          </li>
-        </ol>
-        <div class="path-all">
-          <button class="path-toggle" type="button" data-path-all aria-controls="st-1 st-2 st-3 st-4 st-5">افتح المسار كامل (14 مرحلة)</button>
+          </div>
         </div>
       </div>
     </section>
@@ -674,7 +788,7 @@
             <span class="pay pay-logo" title="American Express"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="color:#2e77bc"><use href="#i-amex"/></svg><span class="sr-only">American Express</span></span>
             <span class="pay pay-tap" lang="en">tap</span>
           </div>
-          <a class="path-link join-path-link" href="#path">شوف مسار التعلم كامل</a>
+          <a class="path-link join-path-link" href="#path">شوف خارطة الطريق التدريبية</a>
         </div>
 
         <figure class="certificate glass reveal">
@@ -694,7 +808,7 @@
         <div class="faq" data-faq>
           <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-0" id="faq-0-btn">وش بتعلم بالضبط؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
-            <div class="faq-panel" id="faq-0" role="region" aria-labelledby="faq-0-btn"><div><p>14 مرحلة تطبيقية موزعة على القواعد الخمس، من أساسيات البرنامج لين الداشبورد والخرائط وبناء استراتيجيتك الشخصية.</p><p><a class="path-link" href="#path">شوف مسار التعلم كامل</a></p></div></div>
+            <div class="faq-panel" id="faq-0" role="region" aria-labelledby="faq-0-btn"><div><p>14 مرحلة تطبيقية موزعة على القواعد الخمس، من أساسيات البرنامج لين الداشبورد والخرائط وبناء استراتيجيتك الشخصية.</p><p><a class="path-link" href="#path">شوف خارطة الطريق التدريبية</a></p></div></div>
           </div>
           <div class="faq-item glass reveal">
             <h3><button type="button" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn">هل أحتاج خبرة في التصميم؟<span class="faq-icon" aria-hidden="true"></span></button></h3>
