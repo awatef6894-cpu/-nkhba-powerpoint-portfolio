@@ -436,9 +436,9 @@ ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 .perk-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .perk-full .perk-num { font-size: 12px; font-weight: 700; opacity: 0.8; direction: ltr; unicode-bidi: isolate; }
 .perk-badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35); }
-.perk-title { margin-top: 6px; font-size: 22px; font-weight: 700; line-height: 1.35; }
-.perk-desc { font-size: 14px; line-height: 1.75; opacity: 0.9; }
-.perk-pulse { margin-top: auto; width: 16px; height: 16px; border-radius: 50%; background: #ffd2ae; animation: perk-pulse 1.8s infinite; }
+.perk-title { margin-top: 4px; font-size: 21px; font-weight: 700; line-height: 1.35; }
+.perk-desc { font-size: 13.5px; line-height: 1.65; opacity: 0.9; }
+.perk-pulse { flex: none; margin-top: auto; width: 16px; height: 16px; border-radius: 50%; background: #ffd2ae; animation: perk-pulse 1.8s infinite; }
 @keyframes perk-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 190, 140, 0.7); } 50% { box-shadow: 0 0 0 8px rgba(255, 190, 140, 0); } }
 .perk:focus-visible { outline: 3px solid var(--green-mid); outline-offset: 3px; }
 .perk-dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 4px; }
