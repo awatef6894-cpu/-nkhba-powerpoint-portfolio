@@ -210,6 +210,42 @@ const CONFIG = {
     });
   }
 
+  /* ---------- 4c. Side menu (below 1024px): open/close, Esc, backdrop, focus kept inside ---------- */
+  const drawer = $("[data-menu]");
+  const menuBtn = $("[data-menu-open]");
+  const backdrop = $("[data-menu-backdrop]");
+  if (drawer && menuBtn && backdrop) {
+    let hideT = 0;
+    const focusables = () => $$("a[href], button:not([disabled])", drawer);
+    const open = () => {
+      clearTimeout(hideT);
+      drawer.hidden = false; backdrop.hidden = false;
+      void drawer.offsetWidth; // let the closed position paint so the slide-in animates
+      drawer.classList.add("is-open"); backdrop.classList.add("is-open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      document.documentElement.style.overflow = "hidden";
+      $("[data-menu-close]", drawer).focus();
+    };
+    const close = (returnFocus = true) => {
+      drawer.classList.remove("is-open"); backdrop.classList.remove("is-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      document.documentElement.style.overflow = "";
+      hideT = setTimeout(() => { drawer.hidden = true; backdrop.hidden = true; }, reduceMotion ? 0 : 350);
+      if (returnFocus) menuBtn.focus();
+    };
+    menuBtn.addEventListener("click", open);
+    $("[data-menu-close]", drawer).addEventListener("click", () => close());
+    backdrop.addEventListener("click", () => close());
+    drawer.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key !== "Tab") return;
+      const f = focusables(), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+      else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+    });
+    window.matchMedia("(min-width: 1024px)").addEventListener("change", (m) => { if (m.matches && drawer.classList.contains("is-open")) close(false); });
+  }
+
   /* ---------- 5. Entrance reveal (stagger 80ms, once) ---------- */
   const reveals = $$(".reveal");
   reveals.forEach((el) => {
